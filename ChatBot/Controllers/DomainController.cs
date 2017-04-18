@@ -14,52 +14,98 @@ using System.Threading.Tasks;
 namespace ChatBot.Controllers
 {
     [Route("api/[controller]")]
-    public class DomainsController : Controller
+    public class DomainsController : Controller//, IDisposable
     {
         private int _page = 1;
         private int _pageSize = 10;
-        /*
-        @USER varchar(15) = NULL,
-	    @DOMAIN varchar(500) = NULL,
-	    @RECORD_STATUS varchar(1) = NULL,
-	    @CREATE_DT varchar(20) = NULL
-         */
-
-        [HttpGet]
-        public async Task<IEnumerable<ListdomainObject>> Get(string userid)
+        private readonly DEFACEWEBSITEContext _context;
+        //protected override void Dispose(bool disposing)
+        //{
+        //    _context.Dispose();
+            
+        //}
+        public DomainsController(DEFACEWEBSITEContext context)
         {
-            var pagination = Request.Headers["Pagination"];
+            _context = context;
+        }
+        [HttpGet]
+        public  async Task<IEnumerable<ListdomainObject>> Get(string userid, string searchString = "")
+        {
 
-            if (!string.IsNullOrEmpty(pagination))
-            {
-                string[] vals = pagination.ToString().Split(',');
-                int.TryParse(vals[0], out _page);
-                int.TryParse(vals[1], out _pageSize);
-            }
+            //using (DEFACEWEBSITEContext context = new DEFACEWEBSITEContext())
+            //{
+                try
+                {
+                    var pagination = Request.Headers["Pagination"];
 
-            DEFACEWEBSITEContext context = new DEFACEWEBSITEContext();
-            string command = $"dbo.Listdomain_Search @USER = '{userid}', @DOMAIN = '',@RECORD_STATUS = '1',@CREATE_DT=''";
-            var result = await context.ListdomainObject.FromSql(command).ToArrayAsync();
-            int currentPage = _page;
-            int currentPageSize = _pageSize;
+                    if (!string.IsNullOrEmpty(pagination))
+                    {
+                        string[] vals = pagination.ToString().Split(',');
+                        int.TryParse(vals[0], out _page);
+                        int.TryParse(vals[1], out _pageSize);
+                    }
 
-            var totalRecord = result.Count();
-            var totalPages = (int)Math.Ceiling((double)totalRecord / _pageSize);
 
-            var domains = result.Skip((currentPage - 1) * currentPageSize).Take(currentPageSize);
-            Response.AddPagination(_page, _pageSize, totalRecord, totalPages);
-            IEnumerable<ListdomainObject> listPagedDomain = Mapper.Map<IEnumerable<ListdomainObject>, IEnumerable<ListdomainObject>>(domains);
+                    string command = $"dbo.Listdomain_SearchByUsername @USERNAME = '{userid}', @DOMAIN = '',@RECORD_STATUS = '1',@CREATE_DT=''";
+                    var result =   _context.ListdomainObject.FromSql(command);
 
-            return listPagedDomain;
+                    if (!String.IsNullOrEmpty(searchString))
+                    {
+                    result = result.Where(domain => domain.DOMAIN.ToLower().Contains(searchString.ToLower()) ||
+                    domain.USERNAME.ToLower().Contains(searchString.ToLower()) ||
+                    domain.DESCRIPTION.ToLower().Contains(searchString.ToLower()) ||
+                    domain.FULLNAME.ToLower().Contains(searchString.ToLower()));
+                    }
+                    var totalRecord = result.Count();
+                    var totalPages = (int)Math.Ceiling((double)totalRecord / _pageSize);
+
+                   
+                    
+                    Response.AddPagination(_page, _pageSize, totalRecord, totalPages);
+                //Added these line and the issue gone!
+                //GC.Collect();
+                //GC.WaitForPendingFinalizers();
+                //IEnumerable<ListdomainObject> listPagedDomain = Mapper.Map<IEnumerable<ListdomainObject>, IEnumerable<ListdomainObject>>(domains);
+                //_context.Dispose();
+                //_context.Dispose();
+                    return await result.Skip((_page - 1) * _pageSize).Take(_pageSize).ToListAsync();
+                }
+                catch (Exception ex)
+                {
+
+                    return new List<ListdomainObject>();
+                }
+            //}
+    
+            
         }
 
         [HttpDelete("{id}")]
-        public async Task<int> Delete(int id)
+        public async Task<ObjectResult> Delete(int id)
         {
-            DEFACEWEBSITEContext context = new DEFACEWEBSITEContext();
-            string command = $"dbo.Listdomain_Del @ID={id}";
-            var result = await context.Database.ExecuteSqlCommandAsync(command, cancellationToken: CancellationToken.None);
-            return result;
+            GenericResult rs = new GenericResult();
+            //DEFACEWEBSITEContext context = new DEFACEWEBSITEContext();
+            try
+            {
+                
+                string command = $"dbo.Listdomain_Del @ID={id}";
+                var result = await _context.Database.ExecuteSqlCommandAsync(command, cancellationToken: CancellationToken.None);
+                rs.Succeeded = true;
+                rs.Message = "Xóa domain thành công!";
+                //return result;
+                ObjectResult objRes = new ObjectResult(rs);
+                //context.Dispose();
+                return objRes;
+            }
+            catch(Exception ex)
+            {
+                rs.Succeeded = false;
+                rs.Message = "Lỗi: " + ex.Message;
+                ObjectResult objRes = new ObjectResult(rs);
+                //context.Dispose();
+                return objRes;
+            }
+
         }
 
         /*
@@ -78,12 +124,31 @@ namespace ChatBot.Controllers
          */
 
         [HttpPost]
-        public async Task<int> Post([FromBody]ListdomainObject domain)
+        public async Task<ObjectResult> Post([FromBody]ListdomainObject domain)
         {
-            DEFACEWEBSITEContext context = new DEFACEWEBSITEContext();
-            string command = $"dbo.Listdomain_Ins @p_DOMAIN = '{domain.DOMAIN}',@p_USER_ID = '{domain.USER_ID}',@p_USERNAME='{domain.USERNAME}',@p_DESCRIPTION=N'{domain.DESCRIPTION}',@p_RECORD_STATUS='1',@p_AUTH_STATUS ='U',@p_CREATE_DT = '{DateTime.Now.Date}',@p_APPROVE_DT = '',@p_EDIT_DT ='',@p_MAKER_ID = 'thieu1234',@p_CHECKER_ID ='',@p_EDITOR_ID=''";
-            var result = await context.Database.ExecuteSqlCommandAsync(command, cancellationToken: CancellationToken.None);
-            return result;
+            GenericResult rs = new GenericResult();
+            //DEFACEWEBSITEContext context = new DEFACEWEBSITEContext();
+            try
+            {
+                
+                string command = $"dbo.Listdomain_Ins @p_DOMAIN = '{domain.DOMAIN}',@p_USER_ID = '{domain.USER_ID}',@p_USERNAME='{domain.USERNAME}',@p_DESCRIPTION=N'{domain.DESCRIPTION}',@p_RECORD_STATUS='1',@p_AUTH_STATUS ='U',@p_CREATE_DT = '{DateTime.Now.Date}',@p_APPROVE_DT = '',@p_EDIT_DT ='',@p_MAKER_ID = 'thieu1234',@p_CHECKER_ID ='',@p_EDITOR_ID=''";
+                var result = await _context.Database.ExecuteSqlCommandAsync(command, cancellationToken: CancellationToken.None);
+                //return result;
+                rs.Message = "Thêm domain thành công";
+                rs.Succeeded = true;
+                ObjectResult objRes = new ObjectResult(rs);
+                //context.Dispose();
+                return objRes;
+                
+            }
+            catch(Exception ex)
+            {
+                rs.Message = "Lỗi " + ex.Message;
+                rs.Succeeded = false;
+                ObjectResult objRes = new ObjectResult(rs);
+                //context.Dispose();
+                return objRes;
+            }
         }
 
         /*
@@ -103,12 +168,29 @@ namespace ChatBot.Controllers
          */
 
         [HttpPut("{id}")]
-        public async Task<int> Put(int id, [FromBody]ListdomainObject domain)
+        public async Task<ObjectResult> Put(int id, [FromBody]ListdomainObject domain)
         {
-            DEFACEWEBSITEContext context = new DEFACEWEBSITEContext();
-            string command = $"dbo.Listdomain_Upd @p_ID= {domain.ID},@p_DOMAIN = '{domain.DOMAIN}',@p_USER_ID='{domain.USER_ID}',@p_USERNAME='{domain.USERNAME}',@p_DESCRIPTION = N'{domain.DESCRIPTION}',@p_RECORD_STATUS = '{domain.RECORD_STATUS}',@p_AUTH_STATUS = '{domain.AUTH_STATUS}',@p_CREATE_DT = '{domain.CREATE_DT}',@p_APPROVE_DT = '{domain.APPROVE_DT}',@p_EDIT_DT = '{DateTime.Now.Date}',@p_MAKER_ID = '{domain.MAKER_ID}',@p_CHECKER_ID = '{domain.CHECKER_ID}',@p_EDITOR_ID = '{domain.EDITOR_ID}'";
-            var result = await context.Database.ExecuteSqlCommandAsync(command, cancellationToken: CancellationToken.None);
-            return result;
+            GenericResult rs = new GenericResult();
+            //DEFACEWEBSITEContext context = new DEFACEWEBSITEContext();
+            try
+            {
+                
+                string command = $"dbo.Listdomain_Upd @p_ID= {domain.ID},@p_DOMAIN = '{domain.DOMAIN}',@p_USER_ID='{domain.USER_ID}',@p_USERNAME='{domain.USERNAME}',@p_DESCRIPTION = N'{domain.DESCRIPTION}',@p_RECORD_STATUS = '{domain.RECORD_STATUS}',@p_AUTH_STATUS = '{domain.AUTH_STATUS}',@p_CREATE_DT = '{domain.CREATE_DT}',@p_APPROVE_DT = '{domain.APPROVE_DT}',@p_EDIT_DT = '{DateTime.Now.Date}',@p_MAKER_ID = '{domain.MAKER_ID}',@p_CHECKER_ID = '{domain.CHECKER_ID}',@p_EDITOR_ID = '{domain.EDITOR_ID}'";
+                var result = await _context.Database.ExecuteSqlCommandAsync(command, cancellationToken: CancellationToken.None);
+                rs.Succeeded = true;
+                rs.Message = "Cập nhật Domain thành công";
+                ObjectResult objRes = new ObjectResult(rs);
+                //context.Dispose();
+                return objRes;
+            }
+            catch(Exception ex)
+            {
+                rs.Succeeded = false;
+                rs.Message = ex.Message;
+                ObjectResult objRes = new ObjectResult(rs);
+                //context.Dispose();
+                return objRes;
+            }
         }
     }
 }

@@ -17,6 +17,11 @@ namespace ChatBot.Controllers
     {
         int _page = 1;
         int _pageSize = 10;
+        private readonly DEFACEWEBSITEContext _context;
+        public OptionUserController(DEFACEWEBSITEContext context)
+        {
+            this._context = context;
+        }
         [HttpGet]
         public  IEnumerable<UserDomainSearchObject> Get(string domain)
         {
@@ -29,9 +34,9 @@ namespace ChatBot.Controllers
                 int.TryParse(vals[1], out _pageSize);
             }
 
-            DEFACEWEBSITEContext context = new DEFACEWEBSITEContext();
+            //DEFACEWEBSITEContext context = new DEFACEWEBSITEContext();
             string command = $"dbo.Optionsuser_Search @USER = '', @DOMAIN = '{domain}'";
-            var result =  context.UserDomainSearchObject.FromSql(command).ToArray();
+            var result =  _context.UserDomainSearchObject.FromSql(command).ToArray();
             int currentPage = _page;
             int currentPageSize = _pageSize;
 
@@ -42,7 +47,7 @@ namespace ChatBot.Controllers
             Response.AddPagination(_page, _pageSize, totalRecord, totalPages);
             IEnumerable<UserDomainSearchObject> listPagedOptionLink = Mapper.Map<IEnumerable<UserDomainSearchObject>, IEnumerable<UserDomainSearchObject>>(optionlinks);
 
-
+            //context.Dispose();
             return listPagedOptionLink;
 
 

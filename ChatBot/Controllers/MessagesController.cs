@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+//using DefaceWebsiteService;
 using ChatBot.Models;
 using Microsoft.EntityFrameworkCore;
 using ChatBot.Infrastructure.Core;
@@ -15,7 +16,7 @@ namespace ChatBot.Controllers
     [Produces("application/json")]
     [Route("api/Messages")]
   //  [Authorize]
-    public class MessagesController : Controller
+    public class MessagesController : Controller, IDisposable
     {
         // int _page = 1;
         // int _pageSize = 10;
@@ -51,56 +52,75 @@ namespace ChatBot.Controllers
         //     return await client.Messages_SearchAsync("thieu1234", "", "");
 
         // }
-
-        int _page = 1;
-        int _pageSize = 10;
-        [HttpGet("{page:int=0}/{pageSize=12}")]
-        // [Authorize("Admin")]
-
-        [Authorize(Roles = "ViewUser")]
-        public async Task<IActionResult> Get(int? page, int? pageSize)
+        //private readonly DEFACEWEBSITEContext _context;
+        //public MessagesController(DEFACEWEBSITEContext context)
+        //{
+        //    _context = context
+        //}
+        //int _page = 1;
+        //int _pageSize = 10;
+        private readonly DEFACEWEBSITEContext _context;
+        public MessagesController(DEFACEWEBSITEContext context)
+        {
+            this._context = context;
+        }
+        [HttpGet("{page:int=0}/{pageSize=12}/{username}/{searchstring=}")]
+        //[Authorize]
+        public async Task<IActionResult> Get(int? page, int? pageSize,string username, string searchstring = null)
         {
 
             //var file = Request.;
-            PaginationSet<Messages> pagedSet = new PaginationSet<Messages>();
-            //   var pagination = Request.Headers;
-
-            //if (!string.IsNullOrEmpty(pagination))
+            //using (DEFACEWEBSITEContext context = new DEFACEWEBSITEContext())
             //{
-            //    string[] vals = pagination.ToString().Split(',');
-            //    int.TryParse(vals[0], out _page);
-            //    int.TryParse(vals[1], out _pageSize);
-            //}
-            //if (await _authorizationService.AuthorizeAsync(User, "AdminOnly"))
-            //{
-            DEFACEWEBSITEContext context = new DEFACEWEBSITEContext();
-            var result =
-                await context.Messages.FromSql("dbo.Messages_Search @USER = {0}, @DOMAIN = {1} , @STATUS = {2}",
-                    "thieu1234", null, null).ToArrayAsync();
+                PaginationSet<Messages> pagedSet = new PaginationSet<Messages>();
+                //   var pagination = Request.Headers;
 
-            int currentPage = page.Value;
-            int currentPageSize = pageSize.Value;
+                //if (!string.IsNullOrEmpty(pagination))
+                //{
+                //    string[] vals = pagination.ToString().Split(',');
+                //    int.TryParse(vals[0], out _page);
+                //    int.TryParse(vals[1], out _pageSize);
+                //}
+                //if (await _authorizationService.AuthorizeAsync(User, "AdminOnly"))
+                //{
+                //DEFACEWEBSITEContext context = new DEFACEWEBSITEContext();
+                var result =
+                     _context.Messages.FromSql("dbo.Messages_Search @USER = {0}, @DOMAIN = {1} , @STATUS = {2}",
+                        username, null, null);
 
-            var totalRecord = result.Count();
-            var totalPages = (int)Math.Ceiling((double)totalRecord / _pageSize);
+                int currentPage = page.Value;
+                int currentPageSize = pageSize.Value;
+                if (!String.IsNullOrEmpty(searchstring))
+                {
+                    result = result.Where(msg => msg.Domain.Contains(searchstring) ||
+                                            msg.User.Contains(searchstring) ||
+                                            msg.Title.ToLower().Contains(searchstring.ToLower()));
+                }
 
-            var messages = result.Skip((currentPage - 1) * currentPageSize).Take(currentPageSize);
-            Response.AddPagination(_page, _pageSize, totalRecord, totalPages);
-            IEnumerable<Messages> listPagedMessage =
-                Mapper.Map<IEnumerable<Messages>, IEnumerable<Messages>>(messages);
+                var totalRecord = result.Count();
+                var totalPages = (int)Math.Ceiling((double)totalRecord / pageSize.Value);
 
-            pagedSet = new PaginationSet<Messages>()
-            {
-                Page = currentPage,
-                TotalCount = totalRecord,
-                TotalPages = totalPages,
-                Items = listPagedMessage
-            };
-            return new ObjectResult(pagedSet);
+                var messages = result.Skip((currentPage) * currentPageSize).Take(currentPageSize).ToList();
+                Response.AddPagination(currentPage, currentPageSize, totalRecord, totalPages);
+                //IEnumerable<Messages> listPagedMessage =
+                    //Mapper.Map<IEnumerable<Messages>, IEnumerable<Messages>>(messages);
+                //messages.ToList().Clear();
+                //result.Clear();
+                pagedSet = new PaginationSet<Messages>()
+                {
+                    Page = currentPage,
+                    TotalCount = totalRecord,
+                    TotalPages = totalPages,
+                    Items = messages
+                };
+
+                //context.Dispose();
+                return new ObjectResult(pagedSet);
+            }
             //   }
             //CodeResultStatus _codeResult = new CodeResultStatus(401);
             //return new ObjectResult(_codeResult);
-        }
+       // }
 
     }
 }

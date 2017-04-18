@@ -17,6 +17,11 @@ namespace ChatBot.Controllers
     {
         int _page = 1;
         int _pageSize = 10;
+        private readonly DEFACEWEBSITEContext _context;
+        public OptionLinksController(DEFACEWEBSITEContext context)
+        {
+            this._context = context;
+        }
         [HttpGet]
         public async Task<IEnumerable<Optionlinks>> Get(string domain)
         {
@@ -29,8 +34,8 @@ namespace ChatBot.Controllers
                 int.TryParse(vals[1], out _pageSize);
             }
 
-            DEFACEWEBSITEContext context = new DEFACEWEBSITEContext();
-            var result = await context.Optionlinks.FromSql("dbo.Optionlinks_Search @DOMAIN = {0} ", domain).ToArrayAsync();
+            //DEFACEWEBSITEContext context = new DEFACEWEBSITEContext();
+            var result = await _context.Optionlinks.FromSql("dbo.Optionlinks_Search @DOMAIN = {0} ", domain).ToArrayAsync();
             int currentPage = _page;
             int currentPageSize = _pageSize;
 
@@ -41,7 +46,7 @@ namespace ChatBot.Controllers
             Response.AddPagination(_page, _pageSize, totalRecord, totalPages);
             IEnumerable<Optionlinks> listPagedOptionLink = Mapper.Map<IEnumerable<Optionlinks>, IEnumerable<Optionlinks>>(optionlinks);
 
-
+            //context.Dispose();
             return listPagedOptionLink;
 
 

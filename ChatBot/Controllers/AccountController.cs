@@ -56,7 +56,7 @@ namespace ChatBot.Controllers
         {
             IActionResult _result = new ObjectResult(false);
             GenericResult _authenticationResult = null;
-
+            
             try
             {
                 var user = await _userManager.FindByNameAsync(model.Username);

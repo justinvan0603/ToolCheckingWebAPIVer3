@@ -28,11 +28,18 @@ namespace ChatBot.Models
         public virtual DbSet<ListdomainObject> ListdomainObject { get; set; }
         public virtual DbSet<OptionSearchObject> OptionSearchObject { get; set; }
         public virtual DbSet<UserDomainSearchObject> UserDomainSearchObject { get; set; }
-        
+
+        public DEFACEWEBSITEContext(DbContextOptions<DEFACEWEBSITEContext> options) : base(options)
+        {
+        }
+        public DEFACEWEBSITEContext()
+        {
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
             optionsBuilder.UseSqlServer(@"Server=27.0.12.24;Database=DEFACEWEBSITE;Integrated Security=False;User Id=deface;Password=123456");
+            //optionsBuilder.UseSqlServer();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

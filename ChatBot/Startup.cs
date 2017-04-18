@@ -8,12 +8,15 @@ using ChatBot.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using System;
+using System.Globalization;
 using System.IO;
 using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
@@ -61,10 +64,16 @@ namespace ChatBot
         {
             string sqlConnectionString = Configuration["ConnectionStrings:DefaultConnection"];
             bool useInMemoryProvider = bool.Parse(Configuration["Data:ChatBotDBConnection:InMemoryProvider"]);
-
+            services.Configure<RequestLocalizationOptions>(opts =>
+            {
+                var supportedCulture = new[] { new CultureInfo("vi-VN") };
+                opts.DefaultRequestCulture = new RequestCulture("vi-VN");
+                opts.SupportedCultures = supportedCulture;
+            });
+            
           //  services.AddDbContext<ChatBotDbContext>(options => options.UseSqlServer(@"Data Source=DESKTOP-SD7L5A2\PC;Initial Catalog=ChatBotDB;Integrated Security=False;User Id=sa;Password=123456;MultipleActiveResultSets=True;"));
             services.AddDbContext<ChatBotDbContext>(options => options.UseSqlServer(@"Data Source=27.0.12.24;Initial Catalog=DEFACEWEBSITE;Integrated Security=False;User Id=deface;Password=123456;MultipleActiveResultSets=True;"));
-
+            services.AddDbContext<DEFACEWEBSITEContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaceConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                // options.Password.RequireDigit = true;
@@ -73,9 +82,10 @@ namespace ChatBot
             //    options.Password.RequireUppercase = true;
                 options.Password.RequiredLength = 6;
             })
+           
           .AddEntityFrameworkStores<ChatBotDbContext>()
           .AddDefaultTokenProviders();
-
+            services.AddScoped<DEFACEWEBSITEContext>();
             // Repositories
 
          
@@ -181,7 +191,8 @@ namespace ChatBot
                 AutomaticAuthenticate = true,
                 AutomaticChallenge = true
             });
-
+            var options = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(options.Value);
             app.UseIdentity();
             // Custom authentication middleware
             // app.UseMiddleware<AuthMiddleware>();
