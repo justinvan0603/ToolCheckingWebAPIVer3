@@ -285,7 +285,7 @@ namespace ChatBot.Controllers
 
 
         [HttpPut]
-        [Authorize(Roles = "EditUser")]
+     
         public async Task<IActionResult> PutAsync([FromBody]ApplicationUserViewModel applicationUserViewModel)
         {
             if (!ModelState.IsValid)
@@ -345,6 +345,8 @@ namespace ChatBot.Controllers
                     }
                     _appGroupService.AddUserToGroups(listAppUserGroup, applicationUserViewModel.Id);
                     _appGroupService.Save();
+
+                   // _userManager.GetRolesAsync()
 
                 }
 

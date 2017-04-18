@@ -193,7 +193,7 @@ namespace ChatBot.Controllers
                 return BadRequest(ModelState);
             }
             IActionResult result = new ObjectResult(false);
-            GenericResult addResult = null;
+            GenericResult genericResult = null;
 
 
             var appGroup = _appGroupService.GetDetail(appGroupViewModel.ID);
@@ -238,6 +238,12 @@ namespace ChatBot.Controllers
                     }
                 }
 
+                genericResult = new GenericResult()
+                {
+                    Succeeded = true,
+                    Message = "Thêm group thành công"
+                };
+
 
             }
             catch (Exception ex)
@@ -247,6 +253,7 @@ namespace ChatBot.Controllers
             }
 
 
+            result = new ObjectResult(genericResult);
             return result;
         }
 
