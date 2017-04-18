@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace ChatBot.Model.Models
 {
+
     public class ApplicationRole : IdentityRole
     {
         public ApplicationRole() : base()

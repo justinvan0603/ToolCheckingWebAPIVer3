@@ -11,7 +11,7 @@ namespace ChatBot.Model.Models
         public int GroupId { set; get; }
 
         [Column(Order = 2)]
-        [StringLength(128)]
+        [StringLength(450)]
         [Key]
         public string RoleId { set; get; }
 

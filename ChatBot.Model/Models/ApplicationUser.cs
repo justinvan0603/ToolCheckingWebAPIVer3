@@ -34,9 +34,6 @@ namespace ChatBot.Model.Models
         //    // Add custom user claims here
         //    return userIdentity;
         //}
-        public static implicit operator ApplicationUser(IdentityRole v)
-        {
-            throw new NotImplementedException();
-        }
+  
     }
 }

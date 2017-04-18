@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using DefaceWebsiteService;
 using ChatBot.Models;
 using Microsoft.EntityFrameworkCore;
 using ChatBot.Infrastructure.Core;
@@ -56,7 +55,9 @@ namespace ChatBot.Controllers
         int _page = 1;
         int _pageSize = 10;
         [HttpGet("{page:int=0}/{pageSize=12}")]
-       [Authorize]
+        // [Authorize("Admin")]
+
+        [Authorize(Roles = "ViewUser")]
         public async Task<IActionResult> Get(int? page, int? pageSize)
         {
 

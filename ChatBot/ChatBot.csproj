@@ -16,11 +16,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\AccountController - Copy.cs" />
-    <Compile Remove="Controllers\DomainController - Copy.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="wwwroot\**\*;Views\**\*">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>

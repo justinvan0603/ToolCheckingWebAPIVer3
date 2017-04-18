@@ -51,52 +51,6 @@ namespace ChatBot.Controllers
         }
 
 
-        //private readonly IMembershipService _membershipService;
-        //private readonly IUserRepository _userRepository;
-
-
-        //public AccountController(IMembershipService membershipService,
-        //    IUserRepository userRepository,
-        //    ILoggingRepository _errorRepository)
-        //{
-        //    _membershipService = membershipService;
-        //    _userRepository = userRepository;
-        //    _loggingRepository = _errorRepository;
-        //}
-
-        //[HttpPost("authenticate")]
-        //public async Task<IActionResult> Login([FromBody] LoginViewModel model)
-        //{
-        //    var user = await _userManager.FindByNameAsync(model.Username);
-        //    if (user == null)
-        //    {
-        //        _authenticationResult = new GenericResult()
-        //        {
-        //            Succeeded = true,
-        //            Message = "Authentication succeeded"
-        //        };
-        //    }
-
-
-        //    throw new NotImplementedException();
-        //}
-
-        [HttpGet]
-        [AllowAnonymous]
-        public IActionResult Login(string returnUrl = null)
-        {
-            IActionResult _result = new ObjectResult(false);
-            GenericResult _authenticationResult = null;
-            _authenticationResult = new GenericResult()
-            {
-                Succeeded = false,
-                Message = "Authentication failed"
-            };
-            _result = new ObjectResult(_authenticationResult);
-            return _result;
-        }
-
-
         [HttpPost("authenticate")]
         public async Task<IActionResult> Login([FromBody] LoginViewModel model)
         {
@@ -165,108 +119,22 @@ namespace ChatBot.Controllers
         }
 
 
-        //[HttpPost("logout")]
-        //public async Task<IActionResult> Logout()
-        //{
-        //    try
-        //    {
-        //        await HttpContext.Authentication.SignOutAsync("Cookies");
-        //        return Ok();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //     //   _loggingRepository.Add(new Error() { Message = ex.Message, StackTrace = ex.StackTrace, DateCreated = DateTime.Now });
-        //     //   _loggingRepository.Commit();
-
-        //        return BadRequest();
-        //    }
-
-        //}
-
-
-
-        //[Route("register")]
-        //[HttpPost]
-        //public IActionResult Register([FromBody] RegistrationViewModel user)
-        //{
-        //    IActionResult _result = new ObjectResult(false);
-        //    GenericResult _registrationResult = null;
-
-        //    try
-        //    {
-        //        if (ModelState.IsValid)
-        //        {
-        //            User _user = _membershipService.CreateUser(user.Username, user.Email, user.Password, new int[] { 1 });
-
-        //            if (_user != null)
-        //            {
-        //                _registrationResult = new GenericResult()
-        //                {
-        //                    Succeeded = true,
-        //                    Message = "Registration succeeded"
-        //                };
-        //            }
-        //        }
-        //        else
-        //        {
-        //            _registrationResult = new GenericResult()
-        //            {
-        //                Succeeded = false,
-        //                Message = "Invalid fields."
-        //            };
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _registrationResult = new GenericResult()
-        //        {
-        //            Succeeded = false,
-        //            Message = ex.Message
-        //        };
-
-        //        _loggingRepository.Add(new Error() { Message = ex.Message, StackTrace = ex.StackTrace, DateCreated = DateTime.Now });
-        //        _loggingRepository.Commit();
-        //    }
-
-        //    _result = new ObjectResult(_registrationResult);
-        //    return _result;
-        //}
-
-
-        [Route("register")]
-        public async Task<IActionResult> Register([FromBody]RegistrationViewModel model)
+        [HttpPost("logout")]
+        public async Task<IActionResult> Logout()
         {
-            //Thêm quyền
-            var adminRole = await _roleManager.FindByNameAsync("Admin");
-            if (adminRole == null)
+            try
             {
-                adminRole = new IdentityRole("Admin");
-                await _roleManager.CreateAsync(adminRole);
+                await HttpContext.Authentication.SignOutAsync("Cookies");
+                return Ok();
             }
-
-            var managerRole = await _roleManager.FindByNameAsync("Manager");
-            if (managerRole == null)
+            catch (Exception ex)
             {
-                managerRole = new IdentityRole("Manager");
-                await _roleManager.CreateAsync(managerRole);
+                _loggingRepository.Add(new Error() { Message = ex.Message, StackTrace = ex.StackTrace, DateCreated = DateTime.Now });
+                _loggingRepository.Commit();
+                return BadRequest();
             }
-
-            //var result = await _userManager.CreateAsync(
-            //    new ApplicationUser
-            //    {
-            //        UserName = model.Username,
-            //        Email = model.Email,
-            //        CreateDt = DateTime.Now,
-            //        ApproveDt = null,
-            //        EditDt = null
-            //    },
-            //    model.Password);
-
-
-            //var adminUser = _userManager.FindByEmailAsync("thieuvq@gmail.com");
-            //await _userManager.AddToRoleAsync(await adminUser, "Admin");
-            return Ok();
 
         }
+
     }
 }

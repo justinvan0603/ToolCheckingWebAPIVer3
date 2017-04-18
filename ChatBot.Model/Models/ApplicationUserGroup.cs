@@ -5,7 +5,7 @@ namespace ChatBot.Model.Models
 {
     public class ApplicationUserGroup
     {
-        [StringLength(128)]
+        [StringLength(450)]
         [Key]
         [Column(Order = 1)]
         public string UserId { set; get; }

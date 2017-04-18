@@ -7,14 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DefaceWebsiteService
+using System.Runtime.Serialization;
+
+namespace ChatBot.Connected_Services.DefaceWebsiteService
 {
-    using System.Runtime.Serialization;
-    
-    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Users_InsResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Users_InsResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Users_InsResult : object
     {
         
@@ -24,7 +23,7 @@ namespace DefaceWebsiteService
         
         private string ResultField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string ErrorDesc
         {
             get
@@ -37,7 +36,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string ID
         {
             get
@@ -50,7 +49,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string Result
         {
             get
@@ -66,7 +65,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Users_UpdResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Users_UpdResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Users_UpdResult : object
     {
         
@@ -76,7 +75,7 @@ namespace DefaceWebsiteService
         
         private string ResultField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string ErrorDesc
         {
             get
@@ -89,7 +88,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> ID
         {
             get
@@ -102,7 +101,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string Result
         {
             get
@@ -118,7 +117,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Users_DelResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Users_DelResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Users_DelResult : object
     {
         
@@ -126,7 +125,7 @@ namespace DefaceWebsiteService
         
         private string ResultField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string ErrorDesc
         {
             get
@@ -139,7 +138,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string Result
         {
             get
@@ -155,7 +154,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Users_CheckLoginResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Users_CheckLoginResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Users_CheckLoginResult : object
     {
         
@@ -163,7 +162,7 @@ namespace DefaceWebsiteService
         
         private string ResultField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string ErrorDesc
         {
             get
@@ -176,7 +175,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string Result
         {
             get
@@ -192,7 +191,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Users_ByIdResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Users_ByIdResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Users_ByIdResult : object
     {
         
@@ -230,7 +229,7 @@ namespace DefaceWebsiteService
         
         private string USERNAMEField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> APPROVE_DT
         {
             get
@@ -243,7 +242,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string APPTOKEN
         {
             get
@@ -256,7 +255,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string AUTH_STATUS
         {
             get
@@ -269,7 +268,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string CHECKER_ID
         {
             get
@@ -282,7 +281,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> CREATE_DT
         {
             get
@@ -295,7 +294,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string DESCRIPTION
         {
             get
@@ -308,7 +307,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string EDITOR_ID
         {
             get
@@ -321,7 +320,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> EDIT_DT
         {
             get
@@ -334,7 +333,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string EMAIL
         {
             get
@@ -347,7 +346,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string FULLNAME
         {
             get
@@ -360,7 +359,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public int ID
         {
             get
@@ -373,7 +372,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string MAKER_ID
         {
             get
@@ -386,7 +385,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> PARENT_ID
         {
             get
@@ -399,7 +398,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string PASSWORD
         {
             get
@@ -412,7 +411,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> PHONE
         {
             get
@@ -425,7 +424,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string RECORD_STATUS
         {
             get
@@ -438,7 +437,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string USERNAME
         {
             get
@@ -454,7 +453,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Users_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Users_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Users_SearchResult : object
     {
         
@@ -498,7 +497,7 @@ namespace DefaceWebsiteService
         
         private string USERNAMEField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> APPROVE_DT
         {
             get
@@ -511,7 +510,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string APPTOKEN
         {
             get
@@ -524,7 +523,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string AUTH_STATUS
         {
             get
@@ -537,7 +536,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string CHECKER_ID
         {
             get
@@ -550,7 +549,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> CREATE_DT
         {
             get
@@ -563,7 +562,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string DESCRIPTION
         {
             get
@@ -576,7 +575,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string EDITOR_ID
         {
             get
@@ -589,7 +588,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> EDIT_DT
         {
             get
@@ -602,7 +601,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string EMAIL
         {
             get
@@ -615,7 +614,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string FULLNAME
         {
             get
@@ -628,7 +627,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public int ID
         {
             get
@@ -641,7 +640,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string MAKER_ID
         {
             get
@@ -654,7 +653,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> PARENT_ID
         {
             get
@@ -667,7 +666,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string PASSWORD
         {
             get
@@ -680,7 +679,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> PHONE
         {
             get
@@ -693,7 +692,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string P_FULLNAME
         {
             get
@@ -706,7 +705,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> P_ID
         {
             get
@@ -719,7 +718,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string P_USERNAME
         {
             get
@@ -732,7 +731,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string RECORD_STATUS
         {
             get
@@ -745,7 +744,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string USERNAME
         {
             get
@@ -761,7 +760,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Userdomain_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Userdomain_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Userdomain_SearchResult : object
     {
         
@@ -773,7 +772,7 @@ namespace DefaceWebsiteService
         
         private string USER_IDField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string DOMAIN_ID
         {
             get
@@ -786,7 +785,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public int ID
         {
             get
@@ -799,7 +798,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string NOTES
         {
             get
@@ -812,7 +811,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string USER_ID
         {
             get
@@ -828,7 +827,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Users_ByParentResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Users_ByParentResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Users_ByParentResult : object
     {
         
@@ -866,7 +865,7 @@ namespace DefaceWebsiteService
         
         private string USERNAMEField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> APPROVE_DT
         {
             get
@@ -879,7 +878,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string APPTOKEN
         {
             get
@@ -892,7 +891,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string AUTH_STATUS
         {
             get
@@ -905,7 +904,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string CHECKER_ID
         {
             get
@@ -918,7 +917,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> CREATE_DT
         {
             get
@@ -931,7 +930,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string DESCRIPTION
         {
             get
@@ -944,7 +943,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string EDITOR_ID
         {
             get
@@ -957,7 +956,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> EDIT_DT
         {
             get
@@ -970,7 +969,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string EMAIL
         {
             get
@@ -983,7 +982,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string FULLNAME
         {
             get
@@ -996,7 +995,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public int ID
         {
             get
@@ -1009,7 +1008,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string MAKER_ID
         {
             get
@@ -1022,7 +1021,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> PARENT_ID
         {
             get
@@ -1035,7 +1034,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string PASSWORD
         {
             get
@@ -1048,7 +1047,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> PHONE
         {
             get
@@ -1061,7 +1060,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string RECORD_STATUS
         {
             get
@@ -1074,7 +1073,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string USERNAME
         {
             get
@@ -1090,7 +1089,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Messages_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Messages_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Messages_SearchResult : object
     {
         
@@ -1108,7 +1107,7 @@ namespace DefaceWebsiteService
         
         private string USERField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string CONTENT
         {
             get
@@ -1121,7 +1120,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.DateTime CREATE_DT
         {
             get
@@ -1134,7 +1133,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string DOMAIN
         {
             get
@@ -1147,7 +1146,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public int ID
         {
             get
@@ -1160,7 +1159,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string STATUS
         {
             get
@@ -1173,7 +1172,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string TITLE
         {
             get
@@ -1186,7 +1185,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string USER
         {
             get
@@ -1202,7 +1201,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Messages_ReadResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Messages_ReadResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Messages_ReadResult : object
     {
         
@@ -1210,7 +1209,7 @@ namespace DefaceWebsiteService
         
         private string ResultField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string ErrorDesc
         {
             get
@@ -1223,7 +1222,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string Result
         {
             get
@@ -1239,7 +1238,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Messages_InsResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Messages_InsResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Messages_InsResult : object
     {
         
@@ -1249,7 +1248,7 @@ namespace DefaceWebsiteService
         
         private string ResultField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string ErrorDesc
         {
             get
@@ -1262,7 +1261,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<decimal> MESSAGE_ID
         {
             get
@@ -1275,7 +1274,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string Result
         {
             get
@@ -1291,7 +1290,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Messages_NotifyInsResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Messages_NotifyInsResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Messages_NotifyInsResult : object
     {
         
@@ -1331,7 +1330,7 @@ namespace DefaceWebsiteService
         
         private string USERNAMEField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> APPROVE_DT
         {
             get
@@ -1344,7 +1343,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string APPTOKEN
         {
             get
@@ -1357,7 +1356,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string AUTH_STATUS
         {
             get
@@ -1370,7 +1369,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string CHECKER_ID
         {
             get
@@ -1383,7 +1382,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> CREATE_DT
         {
             get
@@ -1396,7 +1395,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string DESCRIPTION
         {
             get
@@ -1409,7 +1408,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string EDITOR_ID
         {
             get
@@ -1422,7 +1421,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> EDIT_DT
         {
             get
@@ -1435,7 +1434,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string EMAIL
         {
             get
@@ -1448,7 +1447,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string FULLNAME
         {
             get
@@ -1461,7 +1460,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public int ID
         {
             get
@@ -1474,7 +1473,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string MAKER_ID
         {
             get
@@ -1487,7 +1486,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> MESSAGE_ID
         {
             get
@@ -1500,7 +1499,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> PARENT_ID
         {
             get
@@ -1513,7 +1512,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string PASSWORD
         {
             get
@@ -1526,7 +1525,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> PHONE
         {
             get
@@ -1539,7 +1538,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string RECORD_STATUS
         {
             get
@@ -1552,7 +1551,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string USERNAME
         {
             get
@@ -1568,7 +1567,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Messages_ByIdResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Messages_ByIdResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Messages_ByIdResult : object
     {
         
@@ -1586,7 +1585,7 @@ namespace DefaceWebsiteService
         
         private string USERField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string CONTENT
         {
             get
@@ -1599,7 +1598,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.DateTime CREATE_DT
         {
             get
@@ -1612,7 +1611,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string DOMAIN
         {
             get
@@ -1625,7 +1624,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public int ID
         {
             get
@@ -1638,7 +1637,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string STATUS
         {
             get
@@ -1651,7 +1650,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string TITLE
         {
             get
@@ -1664,7 +1663,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string USER
         {
             get
@@ -1680,7 +1679,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Listdomain_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Listdomain_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Listdomain_SearchResult : object
     {
         
@@ -1712,7 +1711,7 @@ namespace DefaceWebsiteService
         
         private string USER_IDField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> APPROVE_DT
         {
             get
@@ -1725,7 +1724,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string AUTH_STATUS
         {
             get
@@ -1738,7 +1737,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string CHECKER_ID
         {
             get
@@ -1751,7 +1750,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> CREATE_DT
         {
             get
@@ -1764,7 +1763,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string DESCRIPTION
         {
             get
@@ -1777,7 +1776,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string DOMAIN
         {
             get
@@ -1790,7 +1789,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string EDITOR_ID
         {
             get
@@ -1803,7 +1802,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> EDIT_DT
         {
             get
@@ -1816,7 +1815,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string FULLNAME
         {
             get
@@ -1829,7 +1828,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public int ID
         {
             get
@@ -1842,7 +1841,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string MAKER_ID
         {
             get
@@ -1855,7 +1854,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string RECORD_STATUS
         {
             get
@@ -1868,7 +1867,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string USERNAME
         {
             get
@@ -1881,7 +1880,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string USER_ID
         {
             get
@@ -1897,7 +1896,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Listdomain_ByIdResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Listdomain_ByIdResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Listdomain_ByIdResult : object
     {
         
@@ -1927,7 +1926,7 @@ namespace DefaceWebsiteService
         
         private string USER_IDField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> APPROVE_DT
         {
             get
@@ -1940,7 +1939,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string AUTH_STATUS
         {
             get
@@ -1953,7 +1952,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string CHECKER_ID
         {
             get
@@ -1966,7 +1965,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> CREATE_DT
         {
             get
@@ -1979,7 +1978,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string DESCRIPTION
         {
             get
@@ -1992,7 +1991,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string DOMAIN
         {
             get
@@ -2005,7 +2004,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string EDITOR_ID
         {
             get
@@ -2018,7 +2017,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> EDIT_DT
         {
             get
@@ -2031,7 +2030,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public int ID
         {
             get
@@ -2044,7 +2043,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string MAKER_ID
         {
             get
@@ -2057,7 +2056,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string RECORD_STATUS
         {
             get
@@ -2070,7 +2069,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string USERNAME
         {
             get
@@ -2083,7 +2082,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string USER_ID
         {
             get
@@ -2099,7 +2098,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Listdomain_InsResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Listdomain_InsResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Listdomain_InsResult : object
     {
         
@@ -2109,7 +2108,7 @@ namespace DefaceWebsiteService
         
         private string ResultField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string ErrorDesc
         {
             get
@@ -2122,7 +2121,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string ID
         {
             get
@@ -2135,7 +2134,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string Result
         {
             get
@@ -2151,7 +2150,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Listdomain_UpdResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Listdomain_UpdResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Listdomain_UpdResult : object
     {
         
@@ -2161,7 +2160,7 @@ namespace DefaceWebsiteService
         
         private string ResultField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string ErrorDesc
         {
             get
@@ -2174,7 +2173,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> ID
         {
             get
@@ -2187,7 +2186,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string Result
         {
             get
@@ -2203,7 +2202,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Listdomain_DelResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Listdomain_DelResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Listdomain_DelResult : object
     {
         
@@ -2211,7 +2210,7 @@ namespace DefaceWebsiteService
         
         private string ResultField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string ErrorDesc
         {
             get
@@ -2224,7 +2223,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string Result
         {
             get
@@ -2240,7 +2239,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Configtype_ByUserResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Configtype_ByUserResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Configtype_ByUserResult : object
     {
         
@@ -2258,7 +2257,7 @@ namespace DefaceWebsiteService
         
         private string VALUE_TYPEField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string CONF_NAME
         {
             get
@@ -2271,7 +2270,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string CONF_TYPE
         {
             get
@@ -2284,7 +2283,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string CONF_VALUE
         {
             get
@@ -2297,7 +2296,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public int ID
         {
             get
@@ -2310,7 +2309,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string NOTES
         {
             get
@@ -2323,7 +2322,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string USERNAME
         {
             get
@@ -2336,7 +2335,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string VALUE_TYPE
         {
             get
@@ -2352,7 +2351,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Userconfig_UpdResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Userconfig_UpdResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Userconfig_UpdResult : object
     {
         
@@ -2362,7 +2361,7 @@ namespace DefaceWebsiteService
         
         private string ResultField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string ErrorDesc
         {
             get
@@ -2375,7 +2374,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string ID
         {
             get
@@ -2388,7 +2387,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string Result
         {
             get
@@ -2404,7 +2403,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DomainChange_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="DomainChange_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class DomainChange_SearchResult : object
     {
         
@@ -2426,7 +2425,7 @@ namespace DefaceWebsiteService
         
         private string VALUESField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> CREATE_DT
         {
             get
@@ -2439,7 +2438,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string DOMAIN
         {
             get
@@ -2452,7 +2451,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> DOMAIN_ID
         {
             get
@@ -2465,7 +2464,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public int ID
         {
             get
@@ -2478,7 +2477,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string IS_LEAF
         {
             get
@@ -2491,7 +2490,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string MAKER_ID
         {
             get
@@ -2504,7 +2503,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> PARENT_ID
         {
             get
@@ -2517,7 +2516,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string TYPE
         {
             get
@@ -2530,7 +2529,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string VALUES
         {
             get
@@ -2546,7 +2545,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DomainChange_InsResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="DomainChange_InsResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class DomainChange_InsResult : object
     {
         
@@ -2556,7 +2555,7 @@ namespace DefaceWebsiteService
         
         private string ResultField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<decimal> DOMAINCHANGE_ID
         {
             get
@@ -2569,7 +2568,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string ErrorDesc
         {
             get
@@ -2582,7 +2581,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string Result
         {
             get
@@ -2598,7 +2597,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DomainProfile_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="DomainProfile_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class DomainProfile_SearchResult : object
     {
         
@@ -2620,7 +2619,7 @@ namespace DefaceWebsiteService
         
         private string VALUESField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> CREATE_DT
         {
             get
@@ -2633,7 +2632,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string DOMAIN
         {
             get
@@ -2646,7 +2645,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> DOMAIN_ID
         {
             get
@@ -2659,7 +2658,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public int ID
         {
             get
@@ -2672,7 +2671,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string IS_LEAF
         {
             get
@@ -2685,7 +2684,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string MAKER_ID
         {
             get
@@ -2698,7 +2697,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> PARENT_ID
         {
             get
@@ -2711,7 +2710,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string TYPE
         {
             get
@@ -2724,7 +2723,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string VALUES
         {
             get
@@ -2740,7 +2739,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DomainProfile_InsResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="DomainProfile_InsResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class DomainProfile_InsResult : object
     {
         
@@ -2750,7 +2749,7 @@ namespace DefaceWebsiteService
         
         private string ResultField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<decimal> DOMAINPROFILE_ID
         {
             get
@@ -2763,7 +2762,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string ErrorDesc
         {
             get
@@ -2776,7 +2775,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string Result
         {
             get
@@ -2792,7 +2791,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Schedules_CalResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Schedules_CalResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Schedules_CalResult : object
     {
         
@@ -2802,7 +2801,7 @@ namespace DefaceWebsiteService
         
         private string SCHEDULEIDField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string ErrorDesc
         {
             get
@@ -2815,7 +2814,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string Result
         {
             get
@@ -2828,7 +2827,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string SCHEDULEID
         {
             get
@@ -2844,7 +2843,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Schedules_GetByDateResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Schedules_GetByDateResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Schedules_GetByDateResult : object
     {
         
@@ -2880,7 +2879,7 @@ namespace DefaceWebsiteService
         
         private System.Nullable<decimal> TOTAL_LINKField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> CREATE_DT
         {
             get
@@ -2893,7 +2892,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.TimeSpan> EVENT_TIME
         {
             get
@@ -2906,7 +2905,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> EXEC_DATE
         {
             get
@@ -2919,7 +2918,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public int ID
         {
             get
@@ -2932,7 +2931,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string IS_LEAF
         {
             get
@@ -2945,7 +2944,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string MAKER_ID
         {
             get
@@ -2958,7 +2957,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string NOTES
         {
             get
@@ -2971,7 +2970,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> PARENT_ID
         {
             get
@@ -2984,7 +2983,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string PROCESS_STATUS
         {
             get
@@ -2997,7 +2996,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<decimal> P_ALERT
         {
             get
@@ -3010,7 +3009,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<decimal> P_DONE
         {
             get
@@ -3023,7 +3022,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<decimal> P_WARNING
         {
             get
@@ -3036,7 +3035,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> SCH_DATE
         {
             get
@@ -3049,7 +3048,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string SCH_TERM
         {
             get
@@ -3062,7 +3061,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<decimal> TOTAL_DOMAIN
         {
             get
@@ -3075,7 +3074,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<decimal> TOTAL_LINK
         {
             get
@@ -3091,7 +3090,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Schedules_GetLastResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Schedules_GetLastResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Schedules_GetLastResult : object
     {
         
@@ -3103,7 +3102,7 @@ namespace DefaceWebsiteService
         
         private System.Nullable<decimal> TOTAL_LINKField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> SCH_DATE
         {
             get
@@ -3116,7 +3115,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> TIMES
         {
             get
@@ -3129,7 +3128,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<decimal> TOTAL_DOMAIN
         {
             get
@@ -3142,7 +3141,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<decimal> TOTAL_LINK
         {
             get
@@ -3158,7 +3157,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Schedules_DTResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Schedules_DTResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Schedules_DTResult : object
     {
         
@@ -3178,7 +3177,7 @@ namespace DefaceWebsiteService
         
         private string SCH_TERMField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string DOMAIN_ID
         {
             get
@@ -3191,7 +3190,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string EXECUTED
         {
             get
@@ -3204,7 +3203,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> EXE_DATE
         {
             get
@@ -3217,7 +3216,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public int ID
         {
             get
@@ -3230,7 +3229,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string LINK_ID
         {
             get
@@ -3243,7 +3242,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string RES_TYPE
         {
             get
@@ -3256,7 +3255,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> SCH_DATE
         {
             get
@@ -3269,7 +3268,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string SCH_TERM
         {
             get
@@ -3285,7 +3284,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Schedules_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Schedules_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Schedules_SearchResult : object
     {
         
@@ -3317,7 +3316,7 @@ namespace DefaceWebsiteService
         
         private System.Nullable<decimal> TOTAL_LINKField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> CREATE_DT
         {
             get
@@ -3330,7 +3329,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.TimeSpan> EVENT_TIME
         {
             get
@@ -3343,7 +3342,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> EXEC_DATE
         {
             get
@@ -3356,7 +3355,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public int ID
         {
             get
@@ -3369,7 +3368,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string NOTES
         {
             get
@@ -3382,7 +3381,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string PROCESS_STATUS
         {
             get
@@ -3395,7 +3394,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<decimal> P_ALERT
         {
             get
@@ -3408,7 +3407,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<decimal> P_DONE
         {
             get
@@ -3421,7 +3420,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<decimal> P_WARNING
         {
             get
@@ -3434,7 +3433,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> SCH_DATE
         {
             get
@@ -3447,7 +3446,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string SCH_TERM
         {
             get
@@ -3460,7 +3459,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<long> STT
         {
             get
@@ -3473,7 +3472,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<decimal> TOTAL_DOMAIN
         {
             get
@@ -3486,7 +3485,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<decimal> TOTAL_LINK
         {
             get
@@ -3502,7 +3501,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Option_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Option_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Option_SearchResult : object
     {
         
@@ -3538,7 +3537,7 @@ namespace DefaceWebsiteService
         
         private string USERNAMEField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> APPROVE_DT
         {
             get
@@ -3551,7 +3550,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string AUTH_STATUS
         {
             get
@@ -3564,7 +3563,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string CHECKER_ID
         {
             get
@@ -3577,7 +3576,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> CREATE_DT
         {
             get
@@ -3590,7 +3589,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string DESCRIPTION
         {
             get
@@ -3603,7 +3602,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string DOMAIN_ID
         {
             get
@@ -3616,7 +3615,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string EDITOR_ID
         {
             get
@@ -3629,7 +3628,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> EDIT_DT
         {
             get
@@ -3642,7 +3641,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string FULLNAME
         {
             get
@@ -3655,7 +3654,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public int ID
         {
             get
@@ -3668,7 +3667,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string IS_LIMIT
         {
             get
@@ -3681,7 +3680,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string MAKER_ID
         {
             get
@@ -3694,7 +3693,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> PARENT_ID
         {
             get
@@ -3707,7 +3706,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string RECORD_STATUS
         {
             get
@@ -3720,7 +3719,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> TIMES
         {
             get
@@ -3733,7 +3732,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string USERNAME
         {
             get
@@ -3749,7 +3748,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Options_UpdResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Options_UpdResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Options_UpdResult : object
     {
         
@@ -3759,7 +3758,7 @@ namespace DefaceWebsiteService
         
         private string ResultField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string ErrorDesc
         {
             get
@@ -3772,7 +3771,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> ID
         {
             get
@@ -3785,7 +3784,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string Result
         {
             get
@@ -3801,7 +3800,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Optionlinks_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Optionlinks_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Optionlinks_SearchResult : object
     {
         
@@ -3819,7 +3818,7 @@ namespace DefaceWebsiteService
         
         private string RECORD_STATUSField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> CREATE_DT
         {
             get
@@ -3832,7 +3831,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string DOMAIN_ID
         {
             get
@@ -3845,7 +3844,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public int ID
         {
             get
@@ -3858,7 +3857,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string LINK
         {
             get
@@ -3871,7 +3870,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string MAKER_ID
         {
             get
@@ -3884,7 +3883,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> OPTIONS_ID
         {
             get
@@ -3897,7 +3896,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string RECORD_STATUS
         {
             get
@@ -3913,7 +3912,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Optionsuser_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Optionsuser_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Optionsuser_SearchResult : object
     {
         
@@ -3931,7 +3930,7 @@ namespace DefaceWebsiteService
         
         private string USER_IDField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string DOMAIN_ID
         {
             get
@@ -3944,7 +3943,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string FULLNAME
         {
             get
@@ -3957,7 +3956,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public int ID
         {
             get
@@ -3970,7 +3969,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string NOTES
         {
             get
@@ -3983,7 +3982,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> PARENT_ID
         {
             get
@@ -3996,7 +3995,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> USERID
         {
             get
@@ -4009,7 +4008,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string USER_ID
         {
             get
@@ -4025,7 +4024,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Features_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Features_SearchResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Features_SearchResult : object
     {
         
@@ -4055,7 +4054,7 @@ namespace DefaceWebsiteService
         
         private string RESOURCEField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> APPROVE_DT
         {
             get
@@ -4068,7 +4067,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string AUTH_STATUS
         {
             get
@@ -4081,7 +4080,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string CHECKER_ID
         {
             get
@@ -4094,7 +4093,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string CONTENTS
         {
             get
@@ -4107,7 +4106,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> CREATE_DT
         {
             get
@@ -4120,7 +4119,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string EDITOR_ID
         {
             get
@@ -4133,7 +4132,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> EDIT_DT
         {
             get
@@ -4146,7 +4145,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string FEA_TYPE
         {
             get
@@ -4159,7 +4158,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public int ID
         {
             get
@@ -4172,7 +4171,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> LEVEL
         {
             get
@@ -4185,7 +4184,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string MAKER_ID
         {
             get
@@ -4198,7 +4197,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string RECORD_STATUS
         {
             get
@@ -4211,7 +4210,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string RESOURCE
         {
             get
@@ -4227,7 +4226,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Features_InsResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Features_InsResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Features_InsResult : object
     {
         
@@ -4237,7 +4236,7 @@ namespace DefaceWebsiteService
         
         private string ResultField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string ErrorDesc
         {
             get
@@ -4250,7 +4249,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string ID
         {
             get
@@ -4263,7 +4262,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string Result
         {
             get
@@ -4279,7 +4278,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Features_UpdResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Features_UpdResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Features_UpdResult : object
     {
         
@@ -4289,7 +4288,7 @@ namespace DefaceWebsiteService
         
         private string ResultField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string ErrorDesc
         {
             get
@@ -4302,7 +4301,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> ID
         {
             get
@@ -4315,7 +4314,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string Result
         {
             get
@@ -4331,7 +4330,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Features_DelResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Features_DelResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Features_DelResult : object
     {
         
@@ -4339,7 +4338,7 @@ namespace DefaceWebsiteService
         
         private string ResultField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string ErrorDesc
         {
             get
@@ -4352,7 +4351,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string Result
         {
             get
@@ -4368,7 +4367,7 @@ namespace DefaceWebsiteService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.5.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Features_ByIdResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
+    [DataContract(Name="Features_ByIdResult", Namespace="http://schemas.datacontract.org/2004/07/DefaceWebService.Services")]
     public partial class Features_ByIdResult : object
     {
         
@@ -4398,7 +4397,7 @@ namespace DefaceWebsiteService
         
         private string RESOURCEField;
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> APPROVE_DT
         {
             get
@@ -4411,7 +4410,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string AUTH_STATUS
         {
             get
@@ -4424,7 +4423,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string CHECKER_ID
         {
             get
@@ -4437,7 +4436,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string CONTENTS
         {
             get
@@ -4450,7 +4449,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> CREATE_DT
         {
             get
@@ -4463,7 +4462,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string EDITOR_ID
         {
             get
@@ -4476,7 +4475,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<System.DateTime> EDIT_DT
         {
             get
@@ -4489,7 +4488,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string FEA_TYPE
         {
             get
@@ -4502,7 +4501,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public int ID
         {
             get
@@ -4515,7 +4514,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public System.Nullable<int> LEVEL
         {
             get
@@ -4528,7 +4527,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string MAKER_ID
         {
             get
@@ -4541,7 +4540,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string RECORD_STATUS
         {
             get
@@ -4554,7 +4553,7 @@ namespace DefaceWebsiteService
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [DataMember()]
         public string RESOURCE
         {
             get

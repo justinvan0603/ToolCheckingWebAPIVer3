@@ -16,6 +16,36 @@ namespace ChatBot.Data.Migrations
                 .HasAnnotation("ProductVersion", "1.1.1")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("ChatBot.Model.Models.ApplicationGroup", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(250);
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(250);
+
+                    b.HasKey("ID");
+
+                    b.ToTable("ApplicationGroups");
+                });
+
+            modelBuilder.Entity("ChatBot.Model.Models.ApplicationRoleGroup", b =>
+                {
+                    b.Property<int>("GroupId");
+
+                    b.Property<string>("RoleId")
+                        .HasMaxLength(450);
+
+                    b.HasKey("GroupId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("ApplicationRoleGroups");
+                });
+
             modelBuilder.Entity("ChatBot.Model.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -91,7 +121,49 @@ namespace ChatBot.Data.Migrations
                         .IsUnique()
                         .HasName("UserNameIndex");
 
-                    b.ToTable("AspNetUsers");
+                    b.ToTable("ApplicationUser");
+                });
+
+            modelBuilder.Entity("ChatBot.Model.Models.ApplicationUserGroup", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasMaxLength(450);
+
+                    b.Property<int>("GroupId");
+
+                    b.HasKey("UserId", "GroupId");
+
+                    b.HasAlternateKey("GroupId", "UserId");
+
+                    b.ToTable("ApplicationUserGroups");
+                });
+
+            modelBuilder.Entity("ChatBot.Model.Models.BOT_DOMAIN", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime?>("CreatedDate");
+
+                    b.Property<string>("DOMAIN");
+
+                    b.Property<int>("DOMAIN_ID");
+
+                    b.Property<int?>("RECORD_STATUS");
+
+                    b.Property<bool>("Status");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(256);
+
+                    b.Property<DateTime?>("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BOT_DOMAINs");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
@@ -101,6 +173,9 @@ namespace ChatBot.Data.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
 
                     b.Property<string>("Name")
                         .HasMaxLength(256);
@@ -114,7 +189,9 @@ namespace ChatBot.Data.Migrations
                         .IsUnique()
                         .HasName("RoleNameIndex");
 
-                    b.ToTable("AspNetRoles");
+                    b.ToTable("ApplicationRoles");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
@@ -133,7 +210,7 @@ namespace ChatBot.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims");
+                    b.ToTable("ApplicationRoleClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
@@ -152,7 +229,7 @@ namespace ChatBot.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims");
+                    b.ToTable("ApplicationUserClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
@@ -170,7 +247,7 @@ namespace ChatBot.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins");
+                    b.ToTable("ApplicationUserLogins");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole<string>", b =>
@@ -183,7 +260,7 @@ namespace ChatBot.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles");
+                    b.ToTable("ApplicationUserRoles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserToken<string>", b =>
@@ -198,7 +275,45 @@ namespace ChatBot.Data.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens");
+                    b.ToTable("ApplicationUserTokens");
+                });
+
+            modelBuilder.Entity("ChatBot.Model.Models.ApplicationRole", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(250);
+
+                    b.ToTable("ApplicationRole");
+
+                    b.HasDiscriminator().HasValue("ApplicationRole");
+                });
+
+            modelBuilder.Entity("ChatBot.Model.Models.ApplicationRoleGroup", b =>
+                {
+                    b.HasOne("ChatBot.Model.Models.ApplicationGroup", "ApplicationGroup")
+                        .WithMany()
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ChatBot.Model.Models.ApplicationRole", "ApplicationRole")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ChatBot.Model.Models.ApplicationUserGroup", b =>
+                {
+                    b.HasOne("ChatBot.Model.Models.ApplicationGroup", "ApplicationGroup")
+                        .WithMany()
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ChatBot.Model.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

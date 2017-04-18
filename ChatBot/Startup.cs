@@ -15,7 +15,9 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.IO;
+using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
+using ChatBot.Service;
 
 namespace ChatBot
 {
@@ -66,7 +68,7 @@ namespace ChatBot
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                // options.Password.RequireDigit = true;
-                options.Password.RequireLowercase = true;
+            //    options.Password.RequireLowercase = true;
                // options.Password.RequireNonLetterOrDigit = true;
             //    options.Password.RequireUppercase = true;
                 options.Password.RequiredLength = 6;
@@ -75,38 +77,50 @@ namespace ChatBot
           .AddDefaultTokenProviders();
 
             // Repositories
+
+         
+            services.AddScoped<IApplicationGroupRepository, ApplicationGroupRepository>();
+            services.AddScoped<IApplicationUserGroupRepository, ApplicationUserGroupRepository>();
+            services.AddScoped<IApplicationRoleGroupRepository, ApplicationRoleGroupRepository>();
+            services.AddScoped<IApplicationRoleRepository, ApplicationRoleRepository>();
+
+
+            services.AddScoped<ILoggingRepository, LoggingRepository>();
+            services.AddScoped<IBotDomainRepository, BotDomainRepository>();
+
             //services.AddScoped<IUserRepository, UserRepository>();
             //services.AddScoped<IUserRoleRepository, UserRoleRepository>();
             //services.AddScoped<IRoleRepository, RoleRepository>();
-            services.AddScoped<ILoggingRepository, LoggingRepository>();
-        //    services.AddScoped<IBotDomainRepository, BotDomainRepository>();
+
 
             //Services
 
-          //  services.AddScoped<IMembershipService, MembershipService>();
-            //services.AddScoped<IEncryptionService, EncryptionService>();
-            //services.AddScoped<IBotDomainService, BotDomainService>();
+            services.AddScoped<IApplicationGroupService, ApplicationGroupService>();
+            services.AddScoped<IApplicationRoleService, ApplicationRoleService>();
             services.AddAuthentication();
-
             //    services.AddCors();
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                    builder => builder.AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials());
-            });
-            //  Polices
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("CorsPolicy",
+            //        builder => builder.AllowAnyOrigin()
+            //        .AllowAnyMethod()
+            //        .AllowAnyHeader()
+            //        .AllowCredentials());
+            //});
+           // Polices
             //services.AddAuthorization(options =>
             //{
             //    // inline policies
-            //    options.AddPolicy("AdminOnly", policy =>
+            //    options.AddPolicy("DeleteUser2", policy =>
             //    {
-            //        policy.RequireClaim(ClaimTypes.Role, "Admin");
+            //        policy.RequireClaim(ClaimTypes.Role, "DeleteUser");
             //    });
 
             //});
+
+            //  services.AddScoped<IMembershipService, MembershipService>();
+            //services.AddScoped<IEncryptionService, EncryptionService>();
+            services.AddScoped<IBotDomainService, BotDomainService>();
 
             // Add MVC services to the services container.
             services.AddMvc()
@@ -136,7 +150,7 @@ namespace ChatBot
         {
             // this will serve up wwwroot
             app.UseStaticFiles();
-            // app.UseCors("CorsPolicy");
+    //        app.UseCors("CorsPolicy");
             app.UseCors(builder =>
               builder.AllowAnyOrigin()
               .AllowAnyHeader()

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ChatBot.Model.Models
 {
     [Table("ApplicationGroups")]
-    public class ApplicationGroup
+    public class ApplicationGroup 
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
