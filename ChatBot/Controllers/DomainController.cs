@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ChatBot.Infrastructure.Core;
 using ChatBot.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -29,6 +30,7 @@ namespace ChatBot.Controllers
             _context = context;
         }
         [HttpGet]
+        [Authorize(Roles = "ViewDomain")]
         public  async Task<IEnumerable<ListdomainObject>> Get(string userid, string searchString = "")
         {
 
@@ -81,6 +83,7 @@ namespace ChatBot.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "DeleteDomain")]
         public async Task<ObjectResult> Delete(int id)
         {
             GenericResult rs = new GenericResult();
@@ -124,6 +127,7 @@ namespace ChatBot.Controllers
          */
 
         [HttpPost]
+        [Authorize(Roles = "AddDomain")]
         public async Task<ObjectResult> Post([FromBody]ListdomainObject domain)
         {
             GenericResult rs = new GenericResult();
@@ -134,8 +138,16 @@ namespace ChatBot.Controllers
                 string command = $"dbo.Listdomain_Ins @p_DOMAIN = '{domain.DOMAIN}',@p_USER_ID = '{domain.USER_ID}',@p_USERNAME='{domain.USERNAME}',@p_DESCRIPTION=N'{domain.DESCRIPTION}',@p_RECORD_STATUS='1',@p_AUTH_STATUS ='U',@p_CREATE_DT = '{DateTime.Now.Date}',@p_APPROVE_DT = '',@p_EDIT_DT ='',@p_MAKER_ID = 'thieu1234',@p_CHECKER_ID ='',@p_EDITOR_ID=''";
                 var result = await _context.Database.ExecuteSqlCommandAsync(command, cancellationToken: CancellationToken.None);
                 //return result;
-                rs.Message = "Thêm domain thành công";
-                rs.Succeeded = true;
+                if (result != -1)
+                {
+                    rs.Message = "Thêm domain thành công";
+                    rs.Succeeded = true;
+                }
+                else
+                {
+                    rs.Message = "Có lỗi xảy ra trong quá trình thêm!";
+                    rs.Succeeded = false;
+                }
                 ObjectResult objRes = new ObjectResult(rs);
                 //context.Dispose();
                 return objRes;
@@ -168,6 +180,7 @@ namespace ChatBot.Controllers
          */
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "EditDomain")]
         public async Task<ObjectResult> Put(int id, [FromBody]ListdomainObject domain)
         {
             GenericResult rs = new GenericResult();

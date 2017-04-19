@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Xml.Linq;
 using System.Threading;
 using ChatBot.Infrastructure.Core;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ChatBot.Controllers
 {
@@ -22,6 +23,7 @@ namespace ChatBot.Controllers
             this._context = context;
         }
         [HttpGet("{id}", Name = "GetConfig")]
+        [Authorize(Roles = "ViewUserConfig")]
         public async Task<IEnumerable<UserConfigObject>> Get(string id)
         {
             //using (DEFACEWEBSITEContext context = new DEFACEWEBSITEContext())
@@ -40,6 +42,7 @@ namespace ChatBot.Controllers
             //}
         }
         [HttpPut("{id}")]
+        [Authorize(Roles = "EditUserConfig")]
         public async Task<ObjectResult> Put(string id, [FromBody]List<UserConfigObject> user)
         {
             GenericResult rs = new GenericResult();

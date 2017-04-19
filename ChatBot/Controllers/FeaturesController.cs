@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Text;
 using ChatBot.Infrastructure.Core;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ChatBot.Controllers
 {
@@ -22,6 +23,7 @@ namespace ChatBot.Controllers
             this._context = context;
         }
         [HttpPost]
+        [Authorize(Roles = "AddFeature")]
         public async Task<ObjectResult> Post([FromBody]Features feature)
         {
             GenericResult rs = new GenericResult();

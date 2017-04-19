@@ -65,7 +65,7 @@ namespace ChatBot.Controllers
             this._context = context;
         }
         [HttpGet("{page:int=0}/{pageSize=12}/{username}/{searchstring=}")]
-        [Authorize(Roles = "ViewMessage")]
+        //[Authorize(Roles = "ViewMessage")]
         public async Task<IActionResult> Get(int? page, int? pageSize,string username, string searchstring = null)
         {
 
@@ -113,7 +113,23 @@ namespace ChatBot.Controllers
                     TotalPages = totalPages,
                     Items = messages
                 };
+            //    for(int i = 0; i< messages.Count; i++)
+            //{
+            //    if(i% 6 == 0)
+            //    {
+            //        //create row
+            //        //dislay array
 
+            //    }
+            //    else
+            //    {
+            //        for(int j = 0; j < messages.Count; j++)
+            //        {
+                        
+            //        }
+            //    }
+                
+            //}
                 //context.Dispose();
                 return new ObjectResult(pagedSet);
             }
