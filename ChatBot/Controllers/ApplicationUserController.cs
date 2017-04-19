@@ -74,24 +74,24 @@ namespace ChatBot.Controllers
         public IEnumerable<ApplicationUserViewModel> Get()
         {
             
-            var pagination = Request.Headers["Pagination"];
+            //var pagination = Request.Headers["Pagination"];
 
-            if (!string.IsNullOrEmpty(pagination))
-            {
-                string[] vals = pagination.ToString().Split(',');
-                int.TryParse(vals[0], out _page);
-                int.TryParse(vals[1], out _pageSize);
-            }
+            //if (!string.IsNullOrEmpty(pagination))
+            //{
+            //    string[] vals = pagination.ToString().Split(',');
+            //    int.TryParse(vals[0], out _page);
+            //    int.TryParse(vals[1], out _pageSize);
+            //}
 
             var result = _userManager.Users; ;
-            int currentPage = _page;
-            int currentPageSize = _pageSize;
+            //int currentPage = _page;
+            //int currentPageSize = _pageSize;
 
-            var totalRecord = result.Count();
-            var totalPages = (int)Math.Ceiling((double)totalRecord / _pageSize);
+            //var totalRecord = result.Count();
+            //var totalPages = (int)Math.Ceiling((double)totalRecord / _pageSize);
 
-            var domains = result.Skip((currentPage - 1) * currentPageSize).Take(currentPageSize);
-            Response.AddPagination(_page, _pageSize, totalRecord, totalPages);
+            //var domains = result.Skip((currentPage - 1) * currentPageSize).Take(currentPageSize);
+            //Response.AddPagination(_page, _pageSize, totalRecord, totalPages);
             var model = ViewModelMapper<ApplicationUserViewModel, ApplicationUser>.MapObjects(result.ToList(), null);
 
             return model;
@@ -114,7 +114,6 @@ namespace ChatBot.Controllers
             }
             else
             {
-
                 var applicationUserViewModel = PropertyCopy.Copy<ApplicationUserViewModel, ApplicationUser>(user.Result);
                 var listGroup = _appGroupService.GetListGroupByUserId(applicationUserViewModel.Id);
                 var listGroupsViewModel = ViewModelMapper<ApplicationGroupViewModel, ApplicationGroup>.MapObjects(listGroup.ToList(), null);
@@ -134,7 +133,6 @@ namespace ChatBot.Controllers
                         }
                     }
                 }
-
                 // applicationUserViewModel.Groups = Mapper.Map<IEnumerable<ApplicationGroup>, IEnumerable<ApplicationGroupViewModel>>(listGroup);
                 return model;
             }
@@ -314,7 +312,6 @@ namespace ChatBot.Controllers
                         });
      
                         var listRole = _appRoleService.GetListRoleByGroupId(group.ID).ToList();
-                        IEnumerable<string> xff = new List<string>();
                         List<string> list = new List<string>();
                         foreach (var role in listRole)
                         {

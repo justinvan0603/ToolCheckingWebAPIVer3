@@ -34,31 +34,30 @@ namespace ChatBot.Controllers
             _roleManager = roleManager;
             _loggingRepository = loggingRepository;
         }
-        private int _page = 1;
-        private int _pageSize = 10;
+        //private int _page = 1;
+        //private int _pageSize = 10;
         [HttpGet]
         public IEnumerable<ApplicationRoleViewModel> Get()
         {
-            var pagination = Request.Headers["Pagination"];
+            //var pagination = Request.Headers["Pagination"];
 
-            if (!string.IsNullOrEmpty(pagination))
-            {
-                string[] vals = pagination.ToString().Split(',');
-                int.TryParse(vals[0], out _page);
-                int.TryParse(vals[1], out _pageSize);
-            }
+            //if (!string.IsNullOrEmpty(pagination))
+            //{
+            //    string[] vals = pagination.ToString().Split(',');
+            //    int.TryParse(vals[0], out _page);
+            //    int.TryParse(vals[1], out _pageSize);
+            //}
 
             var result = _appRoleService.GetAll();
-            int currentPage = _page;
-            int currentPageSize = _pageSize;
+            //int currentPage = _page;
+            //int currentPageSize = _pageSize;
 
-            var totalRecord = result.Count();
-            var totalPages = (int)Math.Ceiling((double)totalRecord / _pageSize);
-            var resultPage = result.Skip((currentPage - 1) * currentPageSize).Take(currentPageSize);
-            Response.AddPagination(_page, _pageSize, totalRecord, totalPages);
+            //var totalRecord = result.Count();
+            //var totalPages = (int)Math.Ceiling((double)totalRecord / _pageSize);
+            //var resultPage = result.Skip((currentPage - 1) * currentPageSize).Take(currentPageSize);
+            //Response.AddPagination(_page, _pageSize, totalRecord, totalPages);
             //    IEnumerable<ListdomainObject> listPagedDomain = Mapper.Map<IEnumerable<ListdomainObject>, IEnumerable<ListdomainObject>>(domains);
-            var model = ViewModelMapper<ApplicationRoleViewModel, IdentityRole>.MapObjects(resultPage.ToList(), null);
-
+            var model = ViewModelMapper<ApplicationRoleViewModel, IdentityRole>.MapObjects(result.ToList(), null);
             return model;
         }
 

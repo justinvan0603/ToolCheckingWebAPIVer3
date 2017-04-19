@@ -69,24 +69,24 @@ namespace ChatBot.Controllers
         [HttpGet]
         public IEnumerable<ApplicationGroupViewModel> Get()
         {
-            var pagination = Request.Headers["Pagination"];
+            //var pagination = Request.Headers["Pagination"];
 
-            if (!string.IsNullOrEmpty(pagination))
-            {
-                string[] vals = pagination.ToString().Split(',');
-                int.TryParse(vals[0], out _page);
-                int.TryParse(vals[1], out _pageSize);
-            }
+            //if (!string.IsNullOrEmpty(pagination))
+            //{
+            //    string[] vals = pagination.ToString().Split(',');
+            //    int.TryParse(vals[0], out _page);
+            //    int.TryParse(vals[1], out _pageSize);
+            //}
 
             var result = _appGroupService.GetAll();
-            int currentPage = _page;
-            int currentPageSize = _pageSize;
+            //int currentPage = _page;
+            //int currentPageSize = _pageSize;
         
-            var totalRecord = result.Count();
-            var totalPages = (int)Math.Ceiling((double)totalRecord / _pageSize);
-            var resultPage = result.Skip((currentPage - 1) * currentPageSize).Take(currentPageSize);
-            Response.AddPagination(_page, _pageSize, totalRecord, totalPages);
-            var model = Mapper.Map<IEnumerable<ApplicationGroup>, IEnumerable<ApplicationGroupViewModel>>(resultPage);
+            //var totalRecord = result.Count();
+            //var totalPages = (int)Math.Ceiling((double)totalRecord / _pageSize);
+            //var resultPage = result.Skip((currentPage - 1) * currentPageSize).Take(currentPageSize);
+            //Response.AddPagination(_page, _pageSize, totalRecord, totalPages);
+            var model = Mapper.Map<IEnumerable<ApplicationGroup>, IEnumerable<ApplicationGroupViewModel>>(result);
 
           // var model = ViewModelMapper<ApplicationGroupViewModel, ApplicationGroup>.MapObjects(resultPage.ToList(), _appRoleService);
 
@@ -219,23 +219,28 @@ namespace ChatBot.Controllers
                 _appRoleService.Save();
 
                 //add role to user
-                var listRole = _appRoleService.GetListRoleByGroupId(appGroup.ID);
+                var listRole = _appRoleService.GetListRoleByGroupId(appGroup.ID).ToList();
                 var listUserInGroup = _appGroupService.GetListUserByGroupId(appGroup.ID);
 
 
+                //var listRole = _appRoleService.GetListRoleByGroupId(group.ID).ToList();
+                List<string> list = new List<string>();
+                foreach (var role in listRole)
+                {
+                    list.Add(role.Name);
+
+                }
 
                 foreach (var user in listUserInGroup)
                 {
-
-
-                    var listRoleName = listRole.Select(x => x.Name).ToArray();
-                    foreach (var roleName in listRoleName)
-                    {
-                        if (!await _userManager.IsInRoleAsync(user, roleName))
-                        {
-                            await _userManager.AddToRoleAsync(user, roleName);
-                        }
-                    }
+                  //  var listRoleName = listRole.Select(x => x.Name).ToArray();
+                    //foreach (var roleName in list)
+                    //{
+                        //if (!await _userManager.IsInRoleAsync(user, list))
+                        //{
+                            await _userManager.AddToRolesAsync(user, list);
+                       // }
+                //    }
                 }
 
                 genericResult = new GenericResult()
