@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace ChatBot.Model.Models
 {
@@ -16,7 +17,7 @@ namespace ChatBot.Model.Models
         public string RoleId { set; get; }
 
         [ForeignKey("RoleId")]
-        public virtual ApplicationRole ApplicationRole { set; get; }
+        public virtual IdentityRole ApplicationRole { set; get; }
 
         [ForeignKey("GroupId")]
         public virtual ApplicationGroup ApplicationGroup { set; get; }

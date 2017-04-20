@@ -54,6 +54,7 @@ namespace ChatBot.Service
 
         public bool AddRolesToGroup(IEnumerable<ApplicationRoleGroup> roleGroups, int groupId)
         {
+
             _appRoleGroupRepository.DeleteMulti(x => x.GroupId == groupId);
             _appRoleGroupRepository.Commit();
             foreach (var roleGroup in roleGroups)

@@ -17,8 +17,8 @@ namespace ChatBot.Data
         public DbSet<ApplicationRoleGroup> ApplicationRoleGroups { set; get; }
         public DbSet<ApplicationUserGroup> ApplicationUserGroups { set; get; }
         //public DbSet<BOT_DOMAIN> BOT_DOMAINs { set; get; }
-
-
+        public DbSet<MenuRole> MenuRoles { set; get; }
+        public DbSet<Error> Errors { set; get; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

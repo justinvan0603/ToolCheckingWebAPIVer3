@@ -2,6 +2,7 @@
 using System.Linq;
 using ChatBot.Data.Respositories;
 using ChatBot.Model.Models;
+using ChatBot.Service.Exceptions;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace ChatBot.Service
@@ -43,8 +44,8 @@ namespace ChatBot.Service
 
         public EntityEntry<ApplicationGroup> Add(ApplicationGroup appGroup)
         {
-            //if (_appGroupRepository.CheckContains(x => x.Name == appGroup.Name))
-            //    throw new NameDuplicatedException("Tên không được trùng");
+            if (_appGroupRepository.CheckContains(x => x.Name == appGroup.Name))
+                throw new NameDuplicatedException("Tên không được trùng");
             return _appGroupRepository.Add(appGroup);
         }
 
@@ -82,8 +83,8 @@ namespace ChatBot.Service
 
         public void Update(ApplicationGroup appGroup)
         {
-            //if (_appGroupRepository.CheckContains(x => x.Name == appGroup.Name && x.ID != appGroup.ID))
-            //    throw new NameDuplicatedException("Tên không được trùng");
+            if (_appGroupRepository.CheckContains(x => x.Name == appGroup.Name && x.ID != appGroup.ID))
+                throw new NameDuplicatedException("Tên không được trùng");
             _appGroupRepository.Update(appGroup);
         }
 

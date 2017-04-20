@@ -138,32 +138,56 @@ namespace ChatBot.Data.Migrations
                     b.ToTable("ApplicationUserGroups");
                 });
 
-            modelBuilder.Entity("ChatBot.Model.Models.BOT_DOMAIN", b =>
+            modelBuilder.Entity("ChatBot.Model.Models.Error", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CreatedBy")
-                        .HasMaxLength(256);
+                    b.Property<DateTime>("DateCreated");
 
-                    b.Property<DateTime?>("CreatedDate");
+                    b.Property<string>("Message");
 
-                    b.Property<string>("DOMAIN");
-
-                    b.Property<int>("DOMAIN_ID");
-
-                    b.Property<int?>("RECORD_STATUS");
-
-                    b.Property<bool>("Status");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasMaxLength(256);
-
-                    b.Property<DateTime?>("UpdatedDate");
+                    b.Property<string>("StackTrace");
 
                     b.HasKey("Id");
 
-                    b.ToTable("BOT_DOMAINs");
+                    b.ToTable("Errors");
+                });
+
+            modelBuilder.Entity("ChatBot.Model.Models.MenuRole", b =>
+                {
+                    b.Property<int>("MenuId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AuthStatus");
+
+                    b.Property<string>("CheckerId");
+
+                    b.Property<DateTime?>("DateApprove");
+
+                    b.Property<string>("Isapprove");
+
+                    b.Property<string>("IsapproveFunc");
+
+                    b.Property<string>("MakerId");
+
+                    b.Property<string>("MenuLink");
+
+                    b.Property<string>("MenuName");
+
+                    b.Property<string>("MenuNameEl");
+
+                    b.Property<int?>("MenuOrder");
+
+                    b.Property<string>("MenuParent");
+
+                    b.Property<string>("RoleId");
+
+                    b.HasKey("MenuId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("MenuRoles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
@@ -297,7 +321,7 @@ namespace ChatBot.Data.Migrations
                         .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("ChatBot.Model.Models.ApplicationRole", "ApplicationRole")
+                    b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", "ApplicationRole")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -314,6 +338,13 @@ namespace ChatBot.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ChatBot.Model.Models.MenuRole", b =>
+                {
+                    b.HasOne("ChatBot.Model.Models.ApplicationRole", "ApplicationRole")
+                        .WithMany()
+                        .HasForeignKey("RoleId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
