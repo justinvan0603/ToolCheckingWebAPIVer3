@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
@@ -151,7 +153,8 @@ namespace ChatBot.Controllers
 
                 //save group
                 var listRoleGroup = new List<ApplicationRoleGroup>();
-                foreach (var role in appGroupViewModel.Roles.Where(x=>x.Check))
+                var roles = appGroupViewModel.Roles.Where(x => x.Check).ToList();
+                foreach (var role in roles)
                 {
                     listRoleGroup.Add(new ApplicationRoleGroup()
                     {
@@ -195,19 +198,22 @@ namespace ChatBot.Controllers
             IActionResult result = new ObjectResult(false);
             GenericResult genericResult = null;
 
+            var listRoleRemoveList = _appRoleService.GetListRoleByGroupId(appGroupViewModel.ID).ToList();
+       //    List<ApplicationRoleViewModel> listRoleRemoveList2 = Mapper.Map<IEnumerable<IdentityRole>, IEnumerable<ApplicationRoleViewModel>>(listRoleRemoveList).ToList();
 
             var appGroup = _appGroupService.GetDetail(appGroupViewModel.ID);
             try
             {
                 appGroup.UpdateApplicationGroup(appGroupViewModel);
-
             //    appGroup = PropertyCopy.Copy<ApplicationGroup, ApplicationGroupViewModel>(appGroupViewModel);
                 _appGroupService.Update(appGroup);
                 _appGroupService.Save();
 
                 //save group
                 var listRoleGroup = new List<ApplicationRoleGroup>();
-                foreach (var role in appGroupViewModel.Roles.Where(x=>x.Check))
+
+                var roleByUser = appGroupViewModel.Roles.Where(x => x.Check).ToList();
+                foreach (var role in roleByUser)
                 {
                     listRoleGroup.Add(new ApplicationRoleGroup()
                     {
@@ -215,33 +221,35 @@ namespace ChatBot.Controllers
                         RoleId = role.Id
                     });
                 }
-                _appRoleService.AddRolesToGroup(listRoleGroup, appGroup.ID);
-                _appRoleService.Save();
 
                 //add role to user
-                var listRole = _appRoleService.GetListRoleByGroupId(appGroup.ID).ToList();
-                var listUserInGroup = _appGroupService.GetListUserByGroupId(appGroup.ID);
+                var listUserInGroup = _appGroupService.GetListUserByGroupId(appGroup.ID).ToList();
 
-
-                //var listRole = _appRoleService.GetListRoleByGroupId(group.ID).ToList();
-                List<string> list = new List<string>();
-                foreach (var role in listRole)
+                //Xóa tất cả role thuộc group
+                var listRoleRemoveName = listRoleRemoveList.Select(x => x.Name).ToArray();
+                foreach (var user2 in listUserInGroup)
                 {
-                    list.Add(role.Name);
-
+                    foreach (var roleName in listRoleRemoveName)
+                    {
+                        await _userManager.RemoveFromRoleAsync(user2, roleName);
+                    }
                 }
 
+                _appRoleService.AddRolesToGroup(listRoleGroup, appGroup.ID);
+
+                _appRoleService.Save();
+
+                var listRole = _appRoleService.GetListRoleByGroupId(appGroup.ID).ToList();
+
+                var listRoleName = listRole.Select(x => x.Name).ToArray();
                 foreach (var user in listUserInGroup)
                 {
-                  //  var listRoleName = listRole.Select(x => x.Name).ToArray();
-                    //foreach (var roleName in list)
-                    //{
-                        //if (!await _userManager.IsInRoleAsync(user, list))
-                        //{
-                            await _userManager.AddToRolesAsync(user, list);
-                       // }
-                //    }
+                    foreach (var roleName in listRoleName)
+                    {
+                        await _userManager.AddToRoleAsync(user, roleName);
+                    }
                 }
+
 
                 genericResult = new GenericResult()
                 {
@@ -253,6 +261,11 @@ namespace ChatBot.Controllers
             }
             catch (Exception ex)
             {
+                genericResult = new GenericResult()
+                {
+                    Succeeded = false,
+                    Message = "Thêm group thất bại"
+                };
                 _loggingRepository.Add(new Error() { Message = ex.Message, StackTrace = ex.StackTrace, DateCreated = DateTime.Now });
                 _loggingRepository.Commit();
             }
@@ -264,15 +277,35 @@ namespace ChatBot.Controllers
 
 
         [HttpDelete("{id:int}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             IActionResult _result = new ObjectResult(false);
             GenericResult _removeResult = null;
 
             try
             {
+
+
+                var listUserInGroup = _appGroupService.GetListUserByGroupId(id).ToList();
+                var listRole = _appRoleService.GetListRoleByGroupId(id).ToList();
+
+                foreach (var userinGroup in listUserInGroup)
+                {
+                    foreach (var roleName in listRole)
+                    {
+
+                        //if (!await _userManager.IsInRoleAsync(user, roleName))
+                        //{
+
+                        await _userManager.RemoveFromRoleAsync(userinGroup, roleName.Name);
+                        //     }
+                    }
+                }
+
                 var appGroup = _appGroupService.Delete(id);
                 _appGroupService.Save();
+
+               
 
                 _removeResult = new GenericResult()
                 {

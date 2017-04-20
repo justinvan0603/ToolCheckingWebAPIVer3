@@ -232,7 +232,7 @@ namespace ChatBot.Controllers
                             UserId = newAppUser.Id
                         });
 
-                        var listRole = _appRoleService.GetListRoleByGroupId(group.ID);
+                        var listRole = _appRoleService.GetListRoleByGroupId(group.ID).ToList();
 
                         List<string> list = new List<string>();
                         foreach (var role in listRole)
@@ -242,7 +242,7 @@ namespace ChatBot.Controllers
                         }
                         foreach (var item in list)
                         {
-                            //   await _userManager.RemoveFromRoleAsync(newAppUser, item);
+                               await _userManager.RemoveFromRoleAsync(newAppUser, item);
                             if (!await _userManager.IsInRoleAsync(newAppUser, item))
                             {
                                 IdentityResult result2 = await _userManager.AddToRoleAsync(newAppUser, item);
@@ -303,7 +303,8 @@ namespace ChatBot.Controllers
                 if (result.Succeeded)
                 {
                     var listAppUserGroup = new List<ApplicationUserGroup>();
-                    foreach (var group in applicationUserViewModel.Groups.Where(x=>x.Check))
+                    var applicationGroupCheckViewModel = applicationUserViewModel.Groups.Where(x => x.Check).ToList();
+                    foreach (var group in applicationGroupCheckViewModel)
                     {
                         listAppUserGroup.Add(new ApplicationUserGroup()
                         {
@@ -312,13 +313,14 @@ namespace ChatBot.Controllers
                         });
      
                         var listRole = _appRoleService.GetListRoleByGroupId(group.ID).ToList();
-                        List<string> list = new List<string>();
-                        foreach (var role in listRole)
-                        {
-                            list.Add(role.Name);
+                        //List<string> list = new List<string>();
+                        //foreach (var role in listRole)
+                        //{
+                        //    list.Add(role.Name);
 
-                        }
-                        foreach (var item in list)
+                        //}
+                        var listRoleName = listRole.Select(x => x.Name).ToArray();
+                        foreach (var item in listRoleName)
                         {
                             await _userManager.RemoveFromRoleAsync(appUser, item);
 
@@ -328,22 +330,20 @@ namespace ChatBot.Controllers
                                 AddErrorsFromResult(result);
                             }
                         }
-                        //IdentityResult result2 = await _userManager.AddToRolesAsync(appUser, en);
-                        //if (!result2.Succeeded)
-                        //{
-                        //    AddErrorsFromResult(result);
-                        //}
-
-                        //foreach (var role in listRole)
-                        //{
-                        //    await _userManager.RemoveFromRoleAsync(appUser.Id, role.Name);
-                        //    await _userManager.AddToRoleAsync(appUser.Id, role.Name);
-                        //}
                     }
+                    var applicationGroupUnCheckViewModel = applicationUserViewModel.Groups.Where(x => x.Check == false);
+                    foreach (var group in applicationGroupUnCheckViewModel)
+                    {
+                        var listRole = _appRoleService.GetListRoleByGroupId(group.ID).ToList();
+                        var listRoleName = listRole.Select(x => x.Name).ToArray();
+                        foreach (var item in listRoleName)
+                        {
+                            await _userManager.RemoveFromRoleAsync(appUser, item);
+                        }
+                    }
+
                     _appGroupService.AddUserToGroups(listAppUserGroup, applicationUserViewModel.Id);
                     _appGroupService.Save();
-
-                   // _userManager.GetRolesAsync()
 
                 }
 
