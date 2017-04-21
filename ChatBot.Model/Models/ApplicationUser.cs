@@ -19,7 +19,9 @@ namespace ChatBot.Model.Models
         // public string Email { get; set; }
 
         public int? PHONE { get; set; }
-        public int? PARENT_ID { get; set; }
+
+        [StringLength(450)]
+        public string PARENT_ID { get; set; }
         [StringLength(500)]
         public string DESCRIPTION { get; set; }
         [StringLength(1)]
