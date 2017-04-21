@@ -89,6 +89,7 @@ namespace ChatBot
             // Repositories
 
          
+            services.AddScoped<IMenuRoleRepository, MenuRoleRepository>();
             services.AddScoped<IApplicationGroupRepository, ApplicationGroupRepository>();
             services.AddScoped<IApplicationUserGroupRepository, ApplicationUserGroupRepository>();
             services.AddScoped<IApplicationRoleGroupRepository, ApplicationRoleGroupRepository>();
@@ -105,6 +106,7 @@ namespace ChatBot
 
             //Services
 
+            services.AddScoped<IMenuRoleService, MenuRoleService>();
             services.AddScoped<IApplicationGroupService, ApplicationGroupService>();
             services.AddScoped<IApplicationRoleService, ApplicationRoleService>();
             services.AddAuthentication();

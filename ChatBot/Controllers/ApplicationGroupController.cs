@@ -64,8 +64,8 @@ namespace ChatBot.Controllers
             _logger = loggerFactory.CreateLogger<AccountController>();
             _jwtOptions = jwtOptions.Value;
         }
-        private int _page = 1;
-        private int _pageSize = 10;
+        //private int _page = 1;
+        //private int _pageSize = 10;
 
 
         [HttpGet]

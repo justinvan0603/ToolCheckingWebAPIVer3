@@ -51,39 +51,46 @@ namespace ChatBot.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime?>("APPROVE_DT");
+
+                    b.Property<string>("APPTOKEN")
+                        .HasMaxLength(1000);
+
+                    b.Property<string>("AUTH_STATUS")
+                        .HasMaxLength(1);
+
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<DateTime?>("ApproveDt");
+                    b.Property<string>("CHECKER_ID")
+                        .HasMaxLength(15);
 
-                    b.Property<string>("Apptoken");
-
-                    b.Property<string>("AuthStatus");
-
-                    b.Property<string>("CheckerId");
+                    b.Property<DateTime?>("CREATE_DT");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
-                    b.Property<DateTime?>("CreateDt");
+                    b.Property<string>("DESCRIPTION")
+                        .HasMaxLength(500);
 
-                    b.Property<string>("Description");
+                    b.Property<string>("EDITOR_ID")
+                        .HasMaxLength(15);
 
-                    b.Property<DateTime?>("EditDt");
-
-                    b.Property<string>("EditorId");
+                    b.Property<DateTime?>("EDIT_DT");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<string>("Fullname");
+                    b.Property<string>("FULLNAME")
+                        .HasMaxLength(200);
 
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
-                    b.Property<string>("MakerId");
+                    b.Property<string>("MAKER_ID")
+                        .HasMaxLength(15);
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
@@ -91,19 +98,20 @@ namespace ChatBot.Data.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256);
 
-                    b.Property<int?>("ParentId");
+                    b.Property<int?>("PARENT_ID");
 
-                    b.Property<string>("Password");
+                    b.Property<string>("PASSWORD");
+
+                    b.Property<int?>("PHONE");
 
                     b.Property<string>("PasswordHash");
-
-                    b.Property<int?>("Phone");
 
                     b.Property<string>("PhoneNumber");
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<string>("RecordStatus");
+                    b.Property<string>("RECORD_STATUS")
+                        .HasMaxLength(1);
 
                     b.Property<string>("SecurityStamp");
 

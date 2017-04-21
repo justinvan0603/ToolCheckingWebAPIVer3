@@ -64,8 +64,8 @@ namespace ChatBot.Controllers
             _logger = loggerFactory.CreateLogger<AccountController>();
             _jwtOptions = jwtOptions.Value;
         }
-        private int _page = 1;
-        private int _pageSize = 10;
+        //private int _page = 1;
+        //private int _pageSize = 10;
 
 
         [HttpGet]
@@ -167,7 +167,7 @@ namespace ChatBot.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "ViewUser")]
+     //   [Authorize(Roles = "ViewUser")]
         public async Task<IActionResult> Create([FromBody]ApplicationUserViewModel applicationUserViewModel)
         {
             ////Thêm quyền
@@ -217,7 +217,7 @@ namespace ChatBot.Controllers
                 ApplicationUser newAppUser = Mapper.Map<ApplicationUserViewModel, ApplicationUser>(applicationUserViewModel);
                 newAppUser.Id = Guid.NewGuid().ToString();
 
-                var result = await _userManager.CreateAsync(newAppUser, newAppUser.Password);
+                var result = await _userManager.CreateAsync(newAppUser, newAppUser.PASSWORD);
                
                 if (result.Succeeded)
                 {
@@ -299,6 +299,7 @@ namespace ChatBot.Controllers
             try
             {
                 appUser.UpdateUser(applicationUserViewModel);
+      //          ApplicationUser appUser = Mapper.Map<ApplicationUserViewModel, ApplicationUser>(applicationUserViewModel);
                 var result = await _userManager.UpdateAsync(appUser);
                 if (result.Succeeded)
                 {
@@ -352,9 +353,15 @@ namespace ChatBot.Controllers
             {
                 _loggingRepository.Add(new Error() { Message = ex.Message, StackTrace = ex.StackTrace, DateCreated = DateTime.Now });
                 _loggingRepository.Commit();
+                addResult = new GenericResult()
+                {
+                    Succeeded = false,
+                    Message = "Dữ liệu không hợp lệ"
+                };
+
             }
 
-
+            actionresult = new ObjectResult(addResult);
             return actionresult;
         }
 
