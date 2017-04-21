@@ -33,7 +33,9 @@ namespace ChatBot.Model.Models
         public string Expanded { get; set; }
         public bool Status { get; set; }
 
-
-
+        public static explicit operator List<object>(MenuRole v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

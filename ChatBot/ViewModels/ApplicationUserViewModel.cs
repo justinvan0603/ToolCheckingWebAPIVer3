@@ -23,6 +23,8 @@ namespace ChatBot.ViewModels
         public string CHECKER_ID { get; set; }
         public string EDITOR_ID { get; set; }
         public string APPTOKEN { get; set; }
+        public string Domain { get; set; }
+        public string DomainDesc { get; set; }
         public IEnumerable<ApplicationGroupViewModel> Groups { set; get; }
     }
 }

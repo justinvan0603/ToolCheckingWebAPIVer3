@@ -32,17 +32,18 @@ namespace ChatBot.Infrastructure.Extensions
             appUser.FULLNAME = appUserViewModel.FULLNAME;
             appUser.PASSWORD = appUserViewModel.PASSWORD;
             appUser.PHONE = appUserViewModel.PHONE;
-            appUser.PARENT_ID = appUserViewModel.PARENT_ID;
+            appUser.PARENT_ID = null;
             appUser.DESCRIPTION = appUserViewModel.DESCRIPTION;
-            appUser.RECORD_STATUS = appUserViewModel.RECORD_STATUS;
-            appUser.AUTH_STATUS = appUserViewModel.AUTH_STATUS;
+            appUser.RECORD_STATUS = "1";
+            appUser.AUTH_STATUS = "U";
             appUser.CREATE_DT = appUserViewModel.CREATE_DT;
-            appUser.APPROVE_DT = appUserViewModel.APPROVE_DT;
+            appUser.APPROVE_DT = null;
             appUser.EDIT_DT = appUserViewModel.EDIT_DT;
             appUser.MAKER_ID = appUserViewModel.MAKER_ID;
             appUser.CHECKER_ID = appUserViewModel.CHECKER_ID;
             appUser.EDITOR_ID = appUserViewModel.EDITOR_ID;
             appUser.APPTOKEN = appUserViewModel.APPTOKEN;
+
         }
     }
 }

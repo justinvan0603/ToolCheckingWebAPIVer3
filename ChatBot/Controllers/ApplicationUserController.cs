@@ -8,11 +8,13 @@ using System.Net;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using AutoMapper;
 using ChatBot.Data.Infrastructure;
 using ChatBot.Infrastructure.Core;
 using ChatBot.Infrastructure.Extensions;
 using ChatBot.Infrastructure.Mappings;
+using ChatBot.Infrastructure.MD5Encryption;
 using ChatBot.Model.Models;
 using ChatBot.Models;
 using ChatBot.Service;
@@ -40,6 +42,7 @@ namespace ChatBot.Controllers
         private readonly ILoggingRepository _loggingRepository;
         private IApplicationGroupService _appGroupService;
         private IApplicationRoleService _appRoleService;
+        private readonly DEFACEWEBSITEContext _context;
 
         //private readonly IEmailSender _emailSender;
         //private readonly ISmsSender _smsSender;
@@ -50,7 +53,7 @@ namespace ChatBot.Controllers
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IOptions<IdentityCookieOptions> identityCookieOptions,
-            ILoggerFactory loggerFactory, IOptions<JwtIssuerOptions> jwtOptions, RoleManager<IdentityRole> roleManager, ILoggingRepository loggingRepository, IApplicationGroupService appGroupService, IApplicationRoleService appRoleService)
+            ILoggerFactory loggerFactory, IOptions<JwtIssuerOptions> jwtOptions, RoleManager<IdentityRole> roleManager, ILoggingRepository loggingRepository, IApplicationGroupService appGroupService, IApplicationRoleService appRoleService, DEFACEWEBSITEContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -58,6 +61,7 @@ namespace ChatBot.Controllers
             _loggingRepository = loggingRepository;
             _appGroupService = appGroupService;
             _appRoleService = appRoleService;
+            _context = context;
 
 
             _externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
@@ -83,7 +87,10 @@ namespace ChatBot.Controllers
             //    int.TryParse(vals[1], out _pageSize);
             //}
 
-            var result = _userManager.Users; ;
+            var result = _userManager.Users.ToList().FindAll(x => x.LockoutEnabled);
+        //    var s = result.FindAll(x => x.LockoutEnabled);
+
+
             //int currentPage = _page;
             //int currentPageSize = _pageSize;
 
@@ -93,7 +100,7 @@ namespace ChatBot.Controllers
             //var domains = result.Skip((currentPage - 1) * currentPageSize).Take(currentPageSize);
             //Response.AddPagination(_page, _pageSize, totalRecord, totalPages);
             var model = ViewModelMapper<ApplicationUserViewModel, ApplicationUser>.MapObjects(result.ToList(), null);
-
+           
             return model;
         }
         [HttpGet("{searchstring=}")]
@@ -201,6 +208,7 @@ namespace ChatBot.Controllers
             //  newAppUser.UpdateUser(applicationUserViewModel);
             //  ApplicationUser newAppUser = PropertyCopy.Copy<ApplicationUser, ApplicationUserViewModel>(applicationUserViewModel);
 
+        
             IActionResult actionResult = new ObjectResult(false);
             GenericResult addResult = null;
 
@@ -220,6 +228,8 @@ namespace ChatBot.Controllers
                         Succeeded = false,
                         Message = "Email đã tồn tại"
                     };
+                    actionResult = new ObjectResult(addResult);
+                    return actionResult;
                 }
                 var userByUserName = await _userManager.FindByNameAsync(applicationUserViewModel.UserName);
                 if (userByUserName != null)
@@ -229,20 +239,29 @@ namespace ChatBot.Controllers
                         Succeeded = false,
                         Message = "Username đã tồn tại"
                     };
+                    actionResult = new ObjectResult(addResult);
+                    return actionResult;
                 }
 
 
                 ApplicationUser newAppUser = Mapper.Map<ApplicationUserViewModel, ApplicationUser>(applicationUserViewModel);
                 newAppUser.Id = Guid.NewGuid().ToString();
-
-                var result = await _userManager.CreateAsync(newAppUser, newAppUser.PASSWORD);
+                newAppUser.PARENT_ID = null;
+                newAppUser.RECORD_STATUS = "1";
+                newAppUser.AUTH_STATUS = "U";
+                newAppUser.APPROVE_DT = null;
+                newAppUser.EDIT_DT = null;
+                newAppUser.PASSWORD = null;
+                newAppUser.CREATE_DT = DateTime.Now.Date;
+                var result = await _userManager.CreateAsync(newAppUser, applicationUserViewModel.PASSWORD);
                
                 if (result.Succeeded)
                 {
 
 
                     var listAppUserGroup = new List<ApplicationUserGroup>();
-                    foreach (var group in applicationUserViewModel.Groups.Where(x=>x.Check))
+                    var groups = applicationUserViewModel.Groups.Where(xy => xy.Check).ToList();
+                    foreach (var group in groups)
                     {
                         listAppUserGroup.Add(new ApplicationUserGroup()
                         {
@@ -278,9 +297,43 @@ namespace ChatBot.Controllers
                     _appGroupService.AddUserToGroups(listAppUserGroup, newAppUser.Id);
                     _appGroupService.Save();
 
+               
+                    //DEFACEWEBSITEContext context = new DEFACEWEBSITEContext();
+                    //string pass = MD5Encoder.MD5Hash(user.Password);
+                    XElement xmldata = new XElement(new XElement("Root"));
+                    XElement x = new XElement("Domain", new XElement("DOMAIN", applicationUserViewModel.Domain),
+                                                       new XElement("DESCRIPTION", applicationUserViewModel.DomainDesc));
+                    xmldata.Add(x);
+
+                    string command = $"dbo.Users_Ins @p_USERNAME = '{newAppUser.UserName}', @p_FULLNAME= N'{newAppUser.FULLNAME}',@p_PASSWORD = '{null}',@p_EMAIL = '{newAppUser.Email}',@p_PHONE = {newAppUser.PHONE},@p_PARENT_ID = '',@p_DESCRIPTION = N'{newAppUser.DESCRIPTION}',@p_RECORD_STATUS = '{newAppUser.RECORD_STATUS}',@p_AUTH_STATUS = '{newAppUser.AUTH_STATUS}',@p_CREATE_DT = '{DateTime.Now.Date}',@p_APPROVE_DT = '{newAppUser.APPROVE_DT}' ,@p_EDIT_DT= '{newAppUser.EDIT_DT}' ,@p_MAKER_ID ='{newAppUser.MAKER_ID}',@p_CHECKER_ID = '{newAppUser.CHECKER_ID}',@p_EDITOR_ID = '{newAppUser.EDITOR_ID}',@DOMAIN ='{xmldata}'";
+                    var resultStore = _context.Database.ExecuteSqlCommand(command);
+                    if (resultStore == -1)
+                    {
+                        addResult = new GenericResult()
+                        {
+                            Succeeded = false,
+                            Message = "Thêm domain thất bại"
+                        };
+                    }
+
+                    addResult = new GenericResult()
+                    {
+                        Succeeded = true,
+                        Message = "Thêm dữ liệu thành công"
+                    };
+
 
                 }
+                else
+                {
+                    addResult = new GenericResult()
+                    {
+                        Succeeded = false,
+                        Message = "Mật khẩu đơn giản (Hãy thử lại với chữ, số, ký tự đặc biệt)"
+                    };
+                }
             }
+           
             catch (Exception ex)
             {
                 addResult = new GenericResult()
@@ -291,6 +344,8 @@ namespace ChatBot.Controllers
                 _loggingRepository.Add(new Error() { Message = ex.Message, StackTrace = ex.StackTrace, DateCreated = DateTime.Now });
                 _loggingRepository.Commit();
             }
+
+
             actionResult = new ObjectResult(addResult);
             return actionResult;
 
@@ -304,6 +359,7 @@ namespace ChatBot.Controllers
      
         public async Task<IActionResult> PutAsync([FromBody]ApplicationUserViewModel applicationUserViewModel)
         {
+           
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -363,7 +419,11 @@ namespace ChatBot.Controllers
 
                     _appGroupService.AddUserToGroups(listAppUserGroup, applicationUserViewModel.Id);
                     _appGroupService.Save();
-
+                    addResult = new GenericResult()
+                    {
+                        Succeeded = true,
+                        Message = "Cập nhật thành công"
+                    };
                 }
 
             }
@@ -395,15 +455,25 @@ namespace ChatBot.Controllers
             try
             {
                 var appUser = await _userManager.FindByIdAsync(id);
-                var result = await _userManager.DeleteAsync(appUser);
-                if (result.Succeeded)
-                {
+                // var result = await _userManager.DeleteAsync(appUser);
+
+                var lock2 =  await _userManager.SetLockoutEnabledAsync(appUser, false);
+                int a = 5;
+        
+                    // user is locked out; take appropriate action
                     _removeResult = new GenericResult()
                     {
                         Succeeded = true,
-                        Message = "Domain removed."
+                        Message = "Xóa thành công"
                     };
-                }
+                //if (result.Succeeded)
+                //{
+                //    _removeResult = new GenericResult()
+                //    {
+                //        Succeeded = true,
+                //        Message = "Xóa thành công"
+                //    };
+                //}
 
                  
             }

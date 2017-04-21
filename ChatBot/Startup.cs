@@ -76,10 +76,10 @@ namespace ChatBot
             services.AddDbContext<DEFACEWEBSITEContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaceConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
-               // options.Password.RequireDigit = true;
-            //    options.Password.RequireLowercase = true;
-               // options.Password.RequireNonLetterOrDigit = true;
-            //    options.Password.RequireUppercase = true;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+           //     options.Password.RequireNonLetterOrDigit = false;
+                options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 6;
             })
            
