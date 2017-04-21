@@ -10,9 +10,10 @@ namespace ChatBot.ViewModels
         public string UserName { get; set; }
         public string Email { get; set; }
         public string FULLNAME { get; set; }
+
         public string PASSWORD { get; set; } 
         public int? PHONE { get; set; }
-        public int? PARENT_ID { get; set; }
+        public string PARENT_ID { get; set; }
         public string DESCRIPTION { get; set; }
         public string RECORD_STATUS { get; set; }
         public string AUTH_STATUS { get; set; }

@@ -86,8 +86,8 @@ namespace ChatBot.Controllers
             //    int.TryParse(vals[0], out _page);
             //    int.TryParse(vals[1], out _pageSize);
             //}
-
-            var result = _userManager.Users.ToList().FindAll(x => x.LockoutEnabled);
+            var userRoot = _userManager.GetUserId(User);
+            var result = _userManager.Users.ToList().FindAll(x => x.LockoutEnabled &&x.PARENT_ID==userRoot);
         //    var s = result.FindAll(x => x.LockoutEnabled);
 
 
@@ -253,6 +253,8 @@ namespace ChatBot.Controllers
                 newAppUser.EDIT_DT = null;
                 newAppUser.PASSWORD = null;
                 newAppUser.CREATE_DT = DateTime.Now.Date;
+                newAppUser.PARENT_ID = _userManager.GetUserId(User);
+
                 var result = await _userManager.CreateAsync(newAppUser, applicationUserViewModel.PASSWORD);
                
                 if (result.Succeeded)
