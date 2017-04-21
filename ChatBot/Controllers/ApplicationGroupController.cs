@@ -40,7 +40,7 @@ namespace ChatBot.Controllers
         private readonly ILoggingRepository _loggingRepository;
         private IApplicationGroupService _appGroupService;
         private IApplicationRoleService _appRoleService;
-    
+
         //private readonly IEmailSender _emailSender;
         //private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
@@ -83,18 +83,31 @@ namespace ChatBot.Controllers
             var result = _appGroupService.GetAll();
             //int currentPage = _page;
             //int currentPageSize = _pageSize;
-        
+
             //var totalRecord = result.Count();
             //var totalPages = (int)Math.Ceiling((double)totalRecord / _pageSize);
             //var resultPage = result.Skip((currentPage - 1) * currentPageSize).Take(currentPageSize);
             //Response.AddPagination(_page, _pageSize, totalRecord, totalPages);
             var model = Mapper.Map<IEnumerable<ApplicationGroup>, IEnumerable<ApplicationGroupViewModel>>(result);
 
-          // var model = ViewModelMapper<ApplicationGroupViewModel, ApplicationGroup>.MapObjects(resultPage.ToList(), _appRoleService);
+            // var model = ViewModelMapper<ApplicationGroupViewModel, ApplicationGroup>.MapObjects(resultPage.ToList(), _appRoleService);
 
             return model;
         }
+        [HttpGet("{searchstring=}")]
+        public IEnumerable<ApplicationGroupViewModel> Get(string searchstring= null)
+        {
+         
+            var result = _appGroupService.GetAll();
+            if(!String.IsNullOrEmpty(searchstring))
+            {
+                result = result.Where(group => group.Name.ToLower().Contains(searchstring.ToLower()));
+            }
+            var model = Mapper.Map<IEnumerable<ApplicationGroup>, IEnumerable<ApplicationGroupViewModel>>(result);
 
+
+            return model.ToList();
+        }
         [Route("detail/{id:int}")]
         [HttpGet]
         public IEnumerable<ApplicationRoleViewModel> Details(int id)

@@ -89,7 +89,7 @@ namespace ChatBot
             // Repositories
 
          
-            services.AddScoped<IMenuRoleRepository, MenuRoleRepository>();
+            //services.AddScoped<IMenuRoleRepository, MenuRoleRepository>();
             services.AddScoped<IApplicationGroupRepository, ApplicationGroupRepository>();
             services.AddScoped<IApplicationUserGroupRepository, ApplicationUserGroupRepository>();
             services.AddScoped<IApplicationRoleGroupRepository, ApplicationRoleGroupRepository>();
@@ -106,7 +106,7 @@ namespace ChatBot
 
             //Services
 
-            services.AddScoped<IMenuRoleService, MenuRoleService>();
+            //services.AddScoped<IMenuRoleService, MenuRoleService>();
             services.AddScoped<IApplicationGroupService, ApplicationGroupService>();
             services.AddScoped<IApplicationRoleService, ApplicationRoleService>();
             services.AddAuthentication();
@@ -242,6 +242,8 @@ namespace ChatBot
             var host = new WebHostBuilder()
               .UseKestrel()
               .UseContentRoot(Directory.GetCurrentDirectory())
+              .UseSetting("detailedErrors", "true")
+              .CaptureStartupErrors(true)
               .UseIISIntegration()
               .UseStartup<Startup>()
               .Build();

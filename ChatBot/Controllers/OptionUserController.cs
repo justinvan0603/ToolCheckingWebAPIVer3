@@ -8,6 +8,7 @@ using ChatBot.Models;
 using Microsoft.EntityFrameworkCore;
 using ChatBot.Infrastructure.Core;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ChatBot.Controllers
 {
@@ -23,6 +24,7 @@ namespace ChatBot.Controllers
             this._context = context;
         }
         [HttpGet]
+        [Authorize(Roles = "ViewOptionUser")]
         public  IEnumerable<UserDomainSearchObject> Get(string domain)
         {
             var pagination = Request.Headers["Pagination"];

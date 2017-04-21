@@ -96,6 +96,24 @@ namespace ChatBot.Controllers
 
             return model;
         }
+        [HttpGet("{searchstring=}")]
+        public IEnumerable<ApplicationUserViewModel> Get(string searchstring = null)
+        {
+
+
+
+            var result = _userManager.Users; ;
+            if (!String.IsNullOrEmpty(searchstring))
+            {
+                result = result.Where(user => user.FULLNAME.ToLower().Contains(searchstring.ToLower()) ||
+                                                user.Email.ToLower().Contains(searchstring.ToLower()) ||
+                                                user.UserName.ToLower().Contains(searchstring.ToLower()) ||
+                                                user.PHONE.ToString().Contains(searchstring.ToLower()));
+            }
+            var model = ViewModelMapper<ApplicationUserViewModel, ApplicationUser>.MapObjects(result.ToList(), null);
+
+            return model.ToList();
+        }
 
 
         [HttpGet("detail")]

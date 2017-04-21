@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Xml.Linq;
 using ChatBot.Infrastructure.Core;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ChatBot.Controllers
 {
@@ -22,6 +23,7 @@ namespace ChatBot.Controllers
             this._context = context;
         }
         [HttpGet]
+        [Authorize(Roles = "ViewOption")]
         public async  Task<OptionSearchObject> Get(string domain)
         {
             
@@ -51,6 +53,7 @@ namespace ChatBot.Controllers
 @IsEditLink varchar(1) = '0'
          */
         [HttpPut("{id}")]
+        [Authorize(Roles = "EditOption")]
         public async Task<ObjectResult> Put(int id, [FromBody]OptionUpdateObject option)
         {
             GenericResult rs = new GenericResult();

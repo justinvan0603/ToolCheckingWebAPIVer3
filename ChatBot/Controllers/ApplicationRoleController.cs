@@ -60,6 +60,19 @@ namespace ChatBot.Controllers
             var model = ViewModelMapper<ApplicationRoleViewModel, IdentityRole>.MapObjects(result.ToList(), null);
             return model;
         }
+        [HttpGet("{searchstring=}")]
+        public IEnumerable<ApplicationRoleViewModel> Get(string searchstring= null)
+        {
+
+
+            var result = _appRoleService.GetAll();
+            if(!String.IsNullOrEmpty(searchstring))
+            {
+                result = result.Where(role => role.Name.ToLower().Contains(searchstring.ToLower()));
+            }
+            var model = ViewModelMapper<ApplicationRoleViewModel, IdentityRole>.MapObjects(result.ToList(), null);
+            return model.ToList();
+        }
 
         [Route("detail/{id:int}")]
         [HttpGet]
