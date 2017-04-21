@@ -27,6 +27,13 @@ namespace ChatBot.Model.Models
         public string Isapprove { get; set; }
         public string IsapproveFunc { get; set; }
 
+        public string RoleName { get; set; }
+        public string Icon { get; set; }
+        public string Selected { get; set; }
+        public string Expanded { get; set; }
+        public bool Status { get; set; }
+
+
 
     }
 }
