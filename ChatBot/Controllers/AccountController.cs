@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using ChatBot.ViewModels.AccountViewModels;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -54,6 +55,8 @@ namespace ChatBot.Controllers
         [HttpPost("authenticate")]
         public async Task<IActionResult> Login([FromBody] LoginViewModel model)
         {
+
+
             IActionResult _result = new ObjectResult(false);
             GenericResult _authenticationResult = null;
             
@@ -84,6 +87,13 @@ namespace ChatBot.Controllers
                         expires_in = (int)_jwtOptions.ValidFor.TotalSeconds
                     };
 
+
+                    if (!String.IsNullOrEmpty(model.TokenFirebase))
+                    {
+                        user.APPTOKEN = model.TokenFirebase;
+                        await _userManager.UpdateAsync(user);
+                    }
+
                     _authenticationResult = new GenericTokenResult()
                     {
                         Succeeded = true,
@@ -95,10 +105,12 @@ namespace ChatBot.Controllers
                 }
                 else
                 {
-                    _authenticationResult = new GenericResult()
+                    _authenticationResult = new GenericTokenResult()
                     {
                         Succeeded = false,
-                        Message = "Authentication failed"
+                        Message = "Authentication failed",
+                        access_token = null,
+                        expires_in = 0
                     };
                 }
             }
@@ -119,7 +131,59 @@ namespace ChatBot.Controllers
         }
 
 
-        [HttpPost("logout")]
+
+        [HttpPut("changePassword")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordViewModel model)
+        {
+
+
+            IActionResult _result = new ObjectResult(false);
+            GenericResult _authenticationResult = null;
+
+            try
+            {
+                var appUser = await _userManager.FindByIdAsync(model.Id);
+
+                var result =
+                   await
+                      _userManager.ChangePasswordAsync(appUser, model.OldPassword, model.NewPassword);
+                if (result.Succeeded)
+                {
+
+                    _authenticationResult = new GenericResult()
+                    {
+                        Succeeded = true,
+                        Message = "Đổi mật khẩu thành công",
+                    };
+                }
+
+                else
+                {
+                _authenticationResult = new GenericResult()
+                {
+                    Succeeded = false,
+                    Message = "Đổi mật khẩu thất bại",
+                };
+            }
+        }
+            catch (Exception ex)
+            {
+                _authenticationResult = new GenericResult()
+        {
+            Succeeded = false,
+                    Message = ex.Message
+                };
+
+        _loggingRepository.Add(new Error() { Message = ex.Message, StackTrace = ex.StackTrace, DateCreated = DateTime.Now });
+                _loggingRepository.Commit();
+            }
+
+    _result = new ObjectResult(_authenticationResult);
+            return _result;
+        }
+
+
+[HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
             try

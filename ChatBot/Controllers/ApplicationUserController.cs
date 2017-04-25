@@ -358,7 +358,6 @@ namespace ChatBot.Controllers
 
 
         [HttpPut]
-     
         public async Task<IActionResult> PutAsync([FromBody]ApplicationUserViewModel applicationUserViewModel)
         {
            
