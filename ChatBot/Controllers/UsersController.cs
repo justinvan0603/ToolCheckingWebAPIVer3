@@ -90,10 +90,11 @@ namespace ChatBot.Controllers
         }
         [HttpGet]
         [Route("GetUserById")]
-        public async Task<Users> GetUserById(int? userid, string username)
+        public UserIdentityObject GetUserById(int? userid, string username)
         {
             //DEFACEWEBSITEContext context = new DEFACEWEBSITEContext();
-            var result = await _context.Users.FromSql("dbo.Users_ById @p_USERNAME = {0}, @p_USERID = {1}", username, userid).SingleAsync();
+            var result =  _context.UserIdentityObject.FromSql("dbo.Users_ById @p_USERNAME = {0}, @p_USERID = {1}", username, userid).Single();
+            int a = 5;
             return result;
         }
         [HttpPut]

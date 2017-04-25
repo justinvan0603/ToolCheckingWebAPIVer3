@@ -13,17 +13,17 @@ namespace ChatBot.Models
      //   public DateTime? APPROVE_DT { get; set; }
      //   public string APPTOKEN { get; set; }
 
-    //    public DateTime? CREATE_DT { get; set; }
+        public DateTime? CREATE_DT { get; set; }
     //    public string DESCRIPTION { get; set; }
      //   public DateTime? EDIT_DT { get; set; }
-     //   public string Email { get; set; }
+        public string Email { get; set; }
 
        
 //
    //     public string PARENT_ID { get; set; }
        // public string PASSWORD { get; set; }
     
-       // public int? PHONE { get; set; }
+        public int? PHONE { get; set; }
 
         
        // public string AUTH_STATUS { get; set; }

@@ -65,7 +65,7 @@ namespace ChatBot.Controllers
             this._context = context;
         }
         [HttpGet("{page:int=0}/{pageSize=12}/{username}/{searchstring=}")]
-        [Authorize(Roles = "ViewMessage")]
+        //[Authorize(Roles = "ViewMessage")]
         public async Task<IActionResult> Get(int? page, int? pageSize,string username, string searchstring = null)
         {
 
