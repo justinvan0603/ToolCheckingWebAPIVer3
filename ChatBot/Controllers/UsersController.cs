@@ -13,6 +13,7 @@ using ChatBot.Infrastructure.Core;
 using ChatBot.Infrastructure.MD5Encryption;
 using System.Xml.Linq;
 using AutoMapper;
+using ChatBot.ViewModels;
 
 namespace ChatBot.Controllers
 {
@@ -62,13 +63,16 @@ namespace ChatBot.Controllers
         }
         [HttpGet]
         [Route("GetListByParent")]
-        public async Task<IEnumerable<Users>> GetListByParent(int parentid, string parentname)
+        public  async Task<IEnumerable<UserIdentityObject>> GetListByParent(int? parentid, string parentname)
         {
+
+
             var pagination = Request.Headers["Pagination"];
 
 
             //DEFACEWEBSITEContext context = new DEFACEWEBSITEContext();
-            var result = await _context.Users.FromSql("dbo.Users_ByParent @p_PARENT_ID = {0}, @p_PARENT_NAME = {1}", parentid, parentname).ToArrayAsync();
+            var result = await  _context.UserIdentityObject.FromSql("dbo.Users_ByParent @p_PARENT_ID = {0}, @p_PARENT_NAME = {1}", parentid, parentname).ToArrayAsync();
+           // int a = 5;
             //int currentPage = _page;
             //int currentPageSize = _pageSize;
 

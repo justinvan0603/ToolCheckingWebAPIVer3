@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using ChatBot.ViewModels;
 
 namespace ChatBot.Models
 {
@@ -28,7 +29,7 @@ namespace ChatBot.Models
         public virtual DbSet<ListdomainObject> ListdomainObject { get; set; }
         public virtual DbSet<OptionSearchObject> OptionSearchObject { get; set; }
         public virtual DbSet<UserDomainSearchObject> UserDomainSearchObject { get; set; }
-
+        public virtual DbSet<UserIdentityObject> UserIdentityObject { get; set; }
         public DEFACEWEBSITEContext(DbContextOptions<DEFACEWEBSITEContext> options) : base(options)
         {
         }

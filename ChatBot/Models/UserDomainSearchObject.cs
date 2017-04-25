@@ -12,7 +12,7 @@ namespace ChatBot.Models
         public string DOMAIN_ID { get; set; }
         public string NOTES { get; set; }
         public string FULLNAME { get; set; }
-        public int? USERID { get; set; }
-        public int? PARENT_ID { get; set; }
+        public string USERID { get; set; }
+        public string PARENT_ID { get; set; }
     }
 }
