@@ -9,7 +9,7 @@ namespace ChatBot.ViewModels.AccountViewModels
     public class ChangePasswordViewModel { 
     
         public string Id { get; set; }
-
+        public string UserName { get; set; }
         [Required(ErrorMessage = "Bạn cần nhập mật khẩu hiện tại")]
         [DataType(DataType.Password)]
         public string OldPassword { get; set; }

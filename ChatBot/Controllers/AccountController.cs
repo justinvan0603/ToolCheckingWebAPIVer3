@@ -135,37 +135,62 @@ namespace ChatBot.Controllers
         [HttpPut("changePassword")]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordViewModel model)
         {
-
+         
 
             IActionResult _result = new ObjectResult(false);
             GenericResult _authenticationResult = null;
 
             try
             {
-                var appUser = await _userManager.FindByIdAsync(model.Id);
+                ApplicationUser appUser=null;
+                if (!String.IsNullOrEmpty(model.Id))
+                {
+                    appUser = await _userManager.FindByIdAsync(model.Id);
 
-                var result =
+                }
+                else if (!String.IsNullOrEmpty(model.UserName))
+                {
+                    appUser = await _userManager.FindByIdAsync(model.Id);
+                }
+                //else
+                //{
+                //    appUser = await _userManager.FindByIdAsync(model.Id);
+                //}
+
+                if (appUser!=null)
+                {
+                    var result =
                    await
                       _userManager.ChangePasswordAsync(appUser, model.OldPassword, model.NewPassword);
-                if (result.Succeeded)
-                {
-
-                    _authenticationResult = new GenericResult()
+                    if (result.Succeeded)
                     {
-                        Succeeded = true,
-                        Message = "Đổi mật khẩu thành công",
-                    };
-                }
 
+                        _authenticationResult = new GenericResult()
+                        {
+                            Succeeded = true,
+                            Message = "Đổi mật khẩu thành công",
+                        };
+                    }
+
+                    else
+                    {
+                        _authenticationResult = new GenericResult()
+                        {
+                            Succeeded = false,
+                            Message = "Đổi mật khẩu thất bại",
+                        };
+                    }
+                
+            }
                 else
                 {
-                _authenticationResult = new GenericResult()
-                {
-                    Succeeded = false,
-                    Message = "Đổi mật khẩu thất bại",
-                };
+                    _authenticationResult = new GenericResult()
+                    {
+                        Succeeded = false,
+                        Message = "Không tìm thấy ID",
+                    };
+                }
             }
-        }
             catch (Exception ex)
             {
                 _authenticationResult = new GenericResult()
