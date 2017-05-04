@@ -196,25 +196,24 @@ namespace ChatBot.Controllers
         public async Task<IActionResult> Create([FromBody]ApplicationUserViewModel applicationUserViewModel)
         {
             ////Thêm quyền
-            //var adminRole = await _roleManager.FindByNameAsync("Admin");
-            //if (adminRole == null)
-            //{
-            //    adminRole = new IdentityRole("Admin");
-            //    await _roleManager.CreateAsync(adminRole);
-            //}
-            //await roleManager.AddClaimAsync(adminRole, new Claim(CustomClaimTypes.Permission, "projects.create"));
-            //await roleManager.AddClaimAsync(adminRole, new Claim(CustomClaimTypes.Permission, "projects.update"));
+        
+
+
+
+        //    await roleManager.AddClaimAsync(adminRole, new Claim(CustomClaimTypes.Permission, "projects.update"));
+
+
             //       var newAppUser = new ApplicationUser();
             //  newAppUser.UpdateUser(applicationUserViewModel);
             //  ApplicationUser newAppUser = PropertyCopy.Copy<ApplicationUser, ApplicationUserViewModel>(applicationUserViewModel);
 
-        
+
             IActionResult actionResult = new ObjectResult(false);
             GenericResult addResult = null;
 
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return RedirectToAction("ga");
             }
         
             try
@@ -527,6 +526,11 @@ namespace ChatBot.Controllers
             {
                 ModelState.AddModelError("", error.Description);
             }
+        }
+
+        public IActionResult Ga()
+        {
+            return Unauthorized();
         }
     }
 }

@@ -89,7 +89,7 @@ namespace ChatBot
             // Repositories
 
          
-            //services.AddScoped<IMenuRoleRepository, MenuRoleRepository>();
+            services.AddScoped<IMenuRoleRepository, MenuRoleRepository>();
             services.AddScoped<IApplicationGroupRepository, ApplicationGroupRepository>();
             services.AddScoped<IApplicationUserGroupRepository, ApplicationUserGroupRepository>();
             services.AddScoped<IApplicationRoleGroupRepository, ApplicationRoleGroupRepository>();
@@ -106,29 +106,29 @@ namespace ChatBot
 
             //Services
 
-            //services.AddScoped<IMenuRoleService, MenuRoleService>();
+            services.AddScoped<IMenuRoleService, MenuRoleService>();
             services.AddScoped<IApplicationGroupService, ApplicationGroupService>();
             services.AddScoped<IApplicationRoleService, ApplicationRoleService>();
-            services.AddAuthentication();
+         //   services.AddAuthentication();
             //    services.AddCors();
-            //services.AddCors(options =>
-            //{
-            //    options.AddPolicy("CorsPolicy",
-            //        builder => builder.AllowAnyOrigin()
-            //        .AllowAnyMethod()
-            //        .AllowAnyHeader()
-            //        .AllowCredentials());
-            //});
-           // Polices
-            //services.AddAuthorization(options =>
-            //{
-            //    // inline policies
-            //    options.AddPolicy("DeleteUser2", policy =>
-            //    {
-            //        policy.RequireClaim(ClaimTypes.Role, "DeleteUser");
-            //    });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
+            // Polices
+            services.AddAuthorization(options =>
+            {
+                // inline policies
+                options.AddPolicy("DeleteUser2", policy =>
+                {
+                    policy.RequireClaim(ClaimTypes.Role, "ViewUserConfig");
+                });
 
-            //});
+            });
 
             //  services.AddScoped<IMembershipService, MembershipService>();
             //services.AddScoped<IEncryptionService, EncryptionService>();

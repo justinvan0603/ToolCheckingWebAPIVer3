@@ -1,4 +1,5 @@
 ﻿using System;
+using ChatBot.Data.Migrations;
 using ChatBot.Model.Models;
 using ChatBot.ViewModels;
 using IdentityServer4.Models;
@@ -43,6 +44,20 @@ namespace ChatBot.Infrastructure.Extensions
             appUser.CHECKER_ID = appUserViewModel.CHECKER_ID;
             appUser.EDITOR_ID = appUserViewModel.EDITOR_ID;
             appUser.APPTOKEN = appUserViewModel.APPTOKEN;
+
+        }
+
+        public static void UpdateMenuRole(this MenuRole menuRole, MenuRoleViewModel menuRoleViewModel)
+        {
+
+            menuRole.MenuId = menuRoleViewModel.MenuId;
+       //     menuRole.ApplicationRole = menuRoleViewModel.ApplicationRole;
+            menuRole.MenuName = menuRoleViewModel.MenuName;
+            menuRole.MenuNameEl = menuRoleViewModel.MenuNameEl;
+            menuRole.MenuParent = menuRoleViewModel.MenuParent;
+            menuRole.MenuLink = menuRoleViewModel.MenuLink;
+            menuRole.RoleName = menuRoleViewModel.RoleName;
+            menuRole.Icon = menuRoleViewModel.Icon;
 
         }
     }

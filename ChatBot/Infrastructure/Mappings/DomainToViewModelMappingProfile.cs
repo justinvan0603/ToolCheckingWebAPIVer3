@@ -33,6 +33,19 @@ namespace ChatBot.Infrastructure.Mappings
 
         protected override void Configure()
         {
+         
+
+            Mapper.CreateMap<ApplicationUser, ApplicationUserViewModel>();
+            Mapper.CreateMap<ApplicationUserViewModel, ApplicationUser>();
+            Mapper.CreateMap<ApplicationGroupViewModel, ApplicationGroup>();
+            Mapper.CreateMap<ApplicationGroup, ApplicationGroupViewModel>();
+
+            Mapper.CreateMap<ApplicationRoleViewModel, IdentityRole>();
+            Mapper.CreateMap<IdentityRole, ApplicationRoleViewModel>();
+            Mapper.CreateMap<MenuRole, MenuRoleViewModel>();
+            Mapper.CreateMap<MenuRoleViewModel, MenuRole>();
+
+
             //  Mapper.CreateMap<BOT_DOMAIN, DomainViewModel>();
             //  .ForMember(cv => cv.RECORD_STATUS, m => m.ResolveUsing<VIPResolver>().FromMember(x => x.RECORD_STATUS));
 
@@ -53,14 +66,6 @@ namespace ChatBot.Infrastructure.Mappings
             //        "/images/" + a.Photos.First().Uri :
             //        "/images/thumbnail-default.png"));
 
-
-            Mapper.CreateMap<ApplicationUser, ApplicationUserViewModel>();
-            Mapper.CreateMap<ApplicationUserViewModel, ApplicationUser>();
-            Mapper.CreateMap<ApplicationGroupViewModel, ApplicationGroup>();
-            Mapper.CreateMap<ApplicationGroup, ApplicationGroupViewModel>();
-
-            Mapper.CreateMap<ApplicationRoleViewModel, IdentityRole>();
-            Mapper.CreateMap<IdentityRole, ApplicationRoleViewModel>();
         }
     }
 }

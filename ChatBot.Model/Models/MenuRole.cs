@@ -12,14 +12,17 @@ namespace ChatBot.Model.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MenuId { get; set; }
 
-        [ForeignKey("RoleId")]
-        public virtual ApplicationRole ApplicationRole { set; get; }
+        //[ForeignKey("RoleId")]
+        //public virtual ApplicationRole ApplicationRole { set; get; }
 
         public string MenuName { get; set; }
         public string MenuNameEl { get; set; }
-        public string MenuParent { get; set; }
+        public int? MenuParent { get; set; }
         public string MenuLink { get; set; }
-        public int? MenuOrder { get; set; }
+        public int? MenuLevel { get; set; }
+
+        public int? Order { get; set; }
+
         public string AuthStatus { get; set; }
         public string MakerId { get; set; }
         public string CheckerId { get; set; }
@@ -33,9 +36,9 @@ namespace ChatBot.Model.Models
         public string Expanded { get; set; }
         public bool Status { get; set; }
 
-        public static explicit operator List<object>(MenuRole v)
-        {
-            throw new NotImplementedException();
-        }
+        //public static explicit operator List<object>(MenuRole v)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

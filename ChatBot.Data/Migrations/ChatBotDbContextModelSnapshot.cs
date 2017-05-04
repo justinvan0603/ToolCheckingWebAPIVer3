@@ -184,17 +184,17 @@ namespace ChatBot.Data.Migrations
 
                     b.Property<string>("MakerId");
 
+                    b.Property<int?>("MenuLevel");
+
                     b.Property<string>("MenuLink");
 
                     b.Property<string>("MenuName");
 
                     b.Property<string>("MenuNameEl");
 
-                    b.Property<int?>("MenuOrder");
+                    b.Property<int?>("MenuParent");
 
-                    b.Property<string>("MenuParent");
-
-                    b.Property<string>("RoleId");
+                    b.Property<int?>("Order");
 
                     b.Property<string>("RoleName");
 
@@ -203,8 +203,6 @@ namespace ChatBot.Data.Migrations
                     b.Property<bool>("Status");
 
                     b.HasKey("MenuId");
-
-                    b.HasIndex("RoleId");
 
                     b.ToTable("MenuRoles");
                 });
@@ -357,13 +355,6 @@ namespace ChatBot.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("ChatBot.Model.Models.MenuRole", b =>
-                {
-                    b.HasOne("ChatBot.Model.Models.ApplicationRole", "ApplicationRole")
-                        .WithMany()
-                        .HasForeignKey("RoleId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
