@@ -23,6 +23,6 @@ namespace ChatBot.Models
 
         public string USERNAME { get; set; }
         public string FULLNAME { get; set; }
-        public int? PARENT_ID { get; set; }
+        public string PARENT_ID { get; set; }
     }
 }
