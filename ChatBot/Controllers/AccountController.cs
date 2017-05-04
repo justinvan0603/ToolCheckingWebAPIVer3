@@ -155,7 +155,7 @@ namespace ChatBot.Controllers
                     _authenticationResult = new GenericTokenResult()
                     {
                         Succeeded = false,
-                        Message = "Authentication failed",
+                        Message = "Tài khoản hoặc mật khẩu không đúng",
                         access_token = null,
                         expires_in = 0
                     };

@@ -189,7 +189,7 @@ namespace ChatBot.Controllers
             try
             {
 
-                if (menuRoleViewModel.MenuLink == "" || menuRoleViewModel.MenuLink == "/")
+                if (menuRoleViewModel.MenuLink == "/")
                     menuRoleViewModel.MenuLink = "";
 
                 var menuTrangChu = _menuRoleService.GetMenuRoleByName("Home");
@@ -218,7 +218,7 @@ namespace ChatBot.Controllers
                 addResult = new GenericResult()
                 {
                     Succeeded = true,
-                    Message = "Thêm thành công"
+                    Message = "Thêm menu thành công"
                 };
             }
             catch (Exception ex)
@@ -249,6 +249,9 @@ namespace ChatBot.Controllers
 
             try
             {
+                if (menuRoleViewModel.MenuLink == "/")
+                    menuRoleViewModel.MenuLink = "";
+
                 var menuRole = _menuRoleService.GetById(menuRoleViewModel.MenuId);
                 menuRole.UpdateMenuRole(menuRoleViewModel);
              //   MenuRole menuRole = Mapper.Map<MenuRoleViewModel, MenuRole>(menuRoleViewModel);
@@ -257,7 +260,7 @@ namespace ChatBot.Controllers
                 updateResult = new GenericResult()
                 {
                     Succeeded = true,
-                    Message = "Cập nhật role thành công"
+                    Message = "Cập nhật menu thành công"
                 };
 
             }
@@ -266,7 +269,7 @@ namespace ChatBot.Controllers
                 updateResult = new GenericResult()
                 {
                     Succeeded = false,
-                    Message = "Tên không được trùng"
+                    Message = "Cập nhật menu thất bại"
                 };
                 _loggingRepository.Add(new Error() { Message = ex.Message, StackTrace = ex.StackTrace, DateCreated = DateTime.Now });
                 _loggingRepository.Commit();
@@ -291,7 +294,7 @@ namespace ChatBot.Controllers
                 _removeResult = new GenericResult()
                 {
                     Succeeded = true,
-                    Message = "Domain removed."
+                    Message = "Xóa menu thành công"
                 };
             }
             catch (Exception ex)
@@ -299,7 +302,7 @@ namespace ChatBot.Controllers
                 _removeResult = new GenericResult()
                 {
                     Succeeded = false,
-                    Message = ex.Message
+                    Message = "Xóa menu thất bại " + ex.Message
                 };
 
                 _loggingRepository.Add(new Error() { Message = ex.Message, StackTrace = ex.StackTrace, DateCreated = DateTime.Now });

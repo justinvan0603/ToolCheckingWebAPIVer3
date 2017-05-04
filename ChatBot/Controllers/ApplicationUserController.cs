@@ -73,8 +73,7 @@ namespace ChatBot.Controllers
 
 
         [HttpGet]
-     //   [Authorize(Roles = "ViewUser")]
-     //   [Authorize("ViewUser")]
+        [Authorize(Roles = "ViewUser")]
         public IEnumerable<ApplicationUserViewModel> Get()
         {
             
@@ -103,12 +102,11 @@ namespace ChatBot.Controllers
            
             return model;
         }
+
+        [Authorize(Roles = "ViewUser")]
         [HttpGet("{searchstring=}")]
         public IEnumerable<ApplicationUserViewModel> Get(string searchstring = null)
         {
-
-
-
             var result = _userManager.Users; ;
             if (!String.IsNullOrEmpty(searchstring))
             {
@@ -124,6 +122,7 @@ namespace ChatBot.Controllers
 
 
         [HttpGet("detail")]
+        [Authorize(Roles = "ViewUser")]
         public IEnumerable<ApplicationGroupViewModel> Details(string id)
         {
             ;
@@ -192,17 +191,10 @@ namespace ChatBot.Controllers
 
 
         [HttpPost]
-     //   [Authorize(Roles = "ViewUser")]
+        [Authorize(Roles = "AddUser")]
         public async Task<IActionResult> Create([FromBody]ApplicationUserViewModel applicationUserViewModel)
         {
-            ////Thêm quyền
-        
-
-
-
         //    await roleManager.AddClaimAsync(adminRole, new Claim(CustomClaimTypes.Permission, "projects.update"));
-
-
             //       var newAppUser = new ApplicationUser();
             //  newAppUser.UpdateUser(applicationUserViewModel);
             //  ApplicationUser newAppUser = PropertyCopy.Copy<ApplicationUser, ApplicationUserViewModel>(applicationUserViewModel);
@@ -213,12 +205,11 @@ namespace ChatBot.Controllers
 
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("ga");
+                return BadRequest();
             }
         
             try
             {
-
                 var userByEmail = await _userManager.FindByEmailAsync(applicationUserViewModel.Email);
                 if (userByEmail != null)
                 {
@@ -357,6 +348,7 @@ namespace ChatBot.Controllers
 
 
         [HttpPut]
+        [Authorize(Roles = "EditUser")]
         public async Task<IActionResult> PutAsync([FromBody]ApplicationUserViewModel applicationUserViewModel)
         {
            
@@ -445,7 +437,7 @@ namespace ChatBot.Controllers
 
 
         [HttpDelete]
-        //[Authorize(Roles = "DeleteUser")]
+        [Authorize(Roles = "DeleteUser")]
         public async Task<IActionResult> Delete(string id)
         {
          
@@ -528,9 +520,9 @@ namespace ChatBot.Controllers
             }
         }
 
-        public IActionResult Ga()
-        {
-            return Unauthorized();
-        }
+        //public IActionResult Ga()
+        //{
+        //    return Unauthorized();
+        //}
     }
 }

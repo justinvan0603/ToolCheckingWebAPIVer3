@@ -37,6 +37,7 @@ namespace ChatBot.Controllers
         //private int _page = 1;
         //private int _pageSize = 10;
         [HttpGet]
+        [Authorize(Roles = "ViewRole")]
         public IEnumerable<ApplicationRoleViewModel> Get()
         {
             //var pagination = Request.Headers["Pagination"];
@@ -61,6 +62,7 @@ namespace ChatBot.Controllers
             return model;
         }
         [HttpGet("{searchstring=}")]
+        [Authorize(Roles = "ViewRole")]
         public IEnumerable<ApplicationRoleViewModel> Get(string searchstring= null)
         {
 
@@ -76,6 +78,7 @@ namespace ChatBot.Controllers
 
         [Route("detail/{id:int}")]
         [HttpGet]
+        [Authorize(Roles = "ViewRole")]
         public ApplicationRoleViewModel Details(string id)
         {
 
@@ -95,6 +98,7 @@ namespace ChatBot.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "AddRole")]
         public async Task<IActionResult> Create([FromBody]ApplicationRoleViewModel applicationRoleViewModel)
         {
             if (!ModelState.IsValid)
@@ -123,7 +127,7 @@ namespace ChatBot.Controllers
                 addResult = new GenericResult()
                 {
                     Succeeded = true,
-                    Message = "Add removed."
+                    Message = "Thêm role thành công"
                 };
             }
             catch (Exception ex)
@@ -131,7 +135,7 @@ namespace ChatBot.Controllers
                 addResult = new GenericResult()
                 {
                     Succeeded = false,
-                    Message = ex.Message
+                    Message = "Thêm role thất bại. Lỗi " + ex
                 };
 
                 _loggingRepository.Add(new Error() { Message = ex.Message, StackTrace = ex.StackTrace, DateCreated = DateTime.Now });
@@ -143,6 +147,7 @@ namespace ChatBot.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "EditRole")]
         public async Task<IActionResult> Put([FromBody]ApplicationRoleViewModel applicationRoleViewModel)
         {
             if (!ModelState.IsValid)
@@ -184,7 +189,7 @@ namespace ChatBot.Controllers
                 updateResult = new GenericResult()
                 {
                     Succeeded = false,
-                    Message = "Tên không được trùng"
+                    Message = "Tên role không được trùng"
                 };
                 _loggingRepository.Add(new Error() { Message = ex.Message, StackTrace = ex.StackTrace, DateCreated = DateTime.Now });
                 _loggingRepository.Commit();
@@ -196,6 +201,7 @@ namespace ChatBot.Controllers
 
 
         //  [HttpDelete("{id:int}")]
+        [Authorize(Roles = "DeleteRole")]
         public IActionResult Delete(string id)
         {
             IActionResult _result = new ObjectResult(false);
@@ -209,7 +215,7 @@ namespace ChatBot.Controllers
                 _removeResult = new GenericResult()
                 {
                     Succeeded = true,
-                    Message = "Domain removed."
+                    Message = "Xóa role thành công"
                 };
             }
             catch (Exception ex)
@@ -217,7 +223,7 @@ namespace ChatBot.Controllers
                 _removeResult = new GenericResult()
                 {
                     Succeeded = false,
-                    Message = ex.Message
+                    Message = "Xóa role thất bại. Lỗi : " +ex.Message
                 };
 
                 _loggingRepository.Add(new Error() { Message = ex.Message, StackTrace = ex.StackTrace, DateCreated = DateTime.Now });

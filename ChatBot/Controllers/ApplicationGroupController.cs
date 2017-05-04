@@ -69,6 +69,7 @@ namespace ChatBot.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "ViewUserGroup")]
         public IEnumerable<ApplicationGroupViewModel> Get()
         {
             //var pagination = Request.Headers["Pagination"];
@@ -95,6 +96,7 @@ namespace ChatBot.Controllers
             return model;
         }
         [HttpGet("{searchstring=}")]
+        [Authorize(Roles = "ViewUserGroup")]
         public IEnumerable<ApplicationGroupViewModel> Get(string searchstring= null)
         {
          
@@ -110,9 +112,9 @@ namespace ChatBot.Controllers
         }
         [Route("detail/{id:int}")]
         [HttpGet]
+        [Authorize(Roles = "ViewUserGroup")]
         public IEnumerable<ApplicationRoleViewModel> Details(int id)
         {
-      
 
             ApplicationGroup appGroup = _appGroupService.GetDetail(id);
             if (appGroup == null)
@@ -148,6 +150,7 @@ namespace ChatBot.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "AddUserGroup")]
         public IActionResult Create([FromBody]ApplicationGroupViewModel appGroupViewModel)
         {
             if (!ModelState.IsValid)
@@ -202,6 +205,7 @@ namespace ChatBot.Controllers
         }
 
         [HttpPut("{id}")]
+   //     [Authorize(Roles = "EditUserGroup")]
         public async Task<IActionResult> PutAsync(int id, [FromBody]ApplicationGroupViewModel appGroupViewModel)
         {
             if (!ModelState.IsValid)
@@ -290,6 +294,7 @@ namespace ChatBot.Controllers
 
 
         [HttpDelete("{id:int}")]
+        [Authorize(Roles = "DeleteUserGroup")]
         public async Task<IActionResult> Delete(int id)
         {
             IActionResult _result = new ObjectResult(false);
