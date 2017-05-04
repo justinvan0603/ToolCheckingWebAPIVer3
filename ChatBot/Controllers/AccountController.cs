@@ -124,9 +124,9 @@ namespace ChatBot.Controllers
                         notBefore: _jwtOptions.NotBefore,
                         expires: _jwtOptions.Expiration,
                         signingCredentials: _jwtOptions.SigningCredentials);
-
+                    
                     var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-
+                    
                     // Serialize and return the response
                     var response = new
                     {
@@ -144,7 +144,7 @@ namespace ChatBot.Controllers
                     _authenticationResult = new GenericTokenResult()
                     {
                         Succeeded = true,
-                        Message = "Authentication succeeded",
+                        Message = "Đăng nhập thành công",
                         access_token = encodedJwt,
                         expires_in = (int)_jwtOptions.ValidFor.TotalSeconds
 
@@ -155,7 +155,7 @@ namespace ChatBot.Controllers
                     _authenticationResult = new GenericTokenResult()
                     {
                         Succeeded = false,
-                        Message = "Tài khoản hoặc mật khẩu không đúng",
+                        Message = "Đăng nhập thất bại vui lòng kiểm tra lại thông tin",
                         access_token = null,
                         expires_in = 0
                     };

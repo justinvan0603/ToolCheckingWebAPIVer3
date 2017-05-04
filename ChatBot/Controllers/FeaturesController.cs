@@ -22,9 +22,9 @@ namespace ChatBot.Controllers
         {
             this._context = context;
         }
-        [HttpPost]
+        [HttpPost("{username}")]
         [Authorize(Roles = "AddFeature")]
-        public async Task<ObjectResult> Post([FromBody]Features feature)
+        public async Task<ObjectResult> Post([FromBody]Features feature, string username)
         {
             GenericResult rs = new GenericResult();
             //DEFACEWEBSITEContext context = new DEFACEWEBSITEContext();
@@ -32,7 +32,7 @@ namespace ChatBot.Controllers
             {
                 
                 feature.CreateDt = DateTime.Now;
-                feature.MakerId = "thieu1234";
+                feature.MakerId = username;
                 feature.RecordStatus = "1";
                 feature.AuthStatus = "U";
 

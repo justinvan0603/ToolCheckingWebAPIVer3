@@ -297,7 +297,7 @@ namespace ChatBot.Controllers
                                                        new XElement("DESCRIPTION", applicationUserViewModel.DomainDesc));
                     xmldata.Add(x);
 
-                    string command = $"dbo.Users_Ins @p_USERNAME = '{newAppUser.UserName}', @p_FULLNAME= N'{newAppUser.FULLNAME}',@p_PASSWORD = '{null}',@p_EMAIL = '{newAppUser.Email}',@p_PHONE = {newAppUser.PHONE},@p_PARENT_ID = '',@p_DESCRIPTION = N'{newAppUser.DESCRIPTION}',@p_RECORD_STATUS = '{newAppUser.RECORD_STATUS}',@p_AUTH_STATUS = '{newAppUser.AUTH_STATUS}',@p_CREATE_DT = '{DateTime.Now.Date}',@p_APPROVE_DT = '{newAppUser.APPROVE_DT}' ,@p_EDIT_DT= '{newAppUser.EDIT_DT}' ,@p_MAKER_ID ='{newAppUser.MAKER_ID}',@p_CHECKER_ID = '{newAppUser.CHECKER_ID}',@p_EDITOR_ID = '{newAppUser.EDITOR_ID}',@DOMAIN ='{xmldata}'";
+                    string command = $"dbo.Users_Ins @p_USERNAME = '{newAppUser.UserName}', @p_FULLNAME= N'{newAppUser.FULLNAME}',@p_PASSWORD = '{null}',@p_EMAIL = '{newAppUser.Email}',@p_PHONE = {newAppUser.PHONE},@p_PARENT_ID = '',@p_DESCRIPTION = N'{newAppUser.DESCRIPTION}',@p_RECORD_STATUS = '{newAppUser.RECORD_STATUS}',@p_AUTH_STATUS = '{newAppUser.AUTH_STATUS}',@p_CREATE_DT = '{DateTime.Now.Date}',@p_APPROVE_DT = '{newAppUser.APPROVE_DT}' ,@p_EDIT_DT= '{newAppUser.EDIT_DT}' ,@p_MAKER_ID ='{newAppUser.MAKER_ID}',@p_CHECKER_ID = '{newAppUser.CHECKER_ID}',@p_EDITOR_ID = '{newAppUser.EDITOR_ID}',@DOMAIN =N'{xmldata}'";
                     var resultStore = _context.Database.ExecuteSqlCommand(command);
                     if (resultStore == -1)
                     {

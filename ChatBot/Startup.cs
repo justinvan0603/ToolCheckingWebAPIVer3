@@ -151,9 +151,11 @@ namespace ChatBot
             // Configure JwtIssuerOptions
             services.Configure<JwtIssuerOptions>(options =>
             {
+      
                 options.Issuer = jwtAppSettingOptions[nameof(JwtIssuerOptions.Issuer)];
                 options.Audience = jwtAppSettingOptions[nameof(JwtIssuerOptions.Audience)];
                 options.SigningCredentials = new SigningCredentials(_securityKey, SecurityAlgorithms.RsaSha256);
+                
             });
         }
 
