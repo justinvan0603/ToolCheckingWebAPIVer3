@@ -71,7 +71,8 @@ namespace ChatBot.Controllers
 
 
             //DEFACEWEBSITEContext context = new DEFACEWEBSITEContext();
-            var result = await  _context.UserIdentityObject.FromSql("dbo.Users_ByParent @p_PARENT_ID = {0}, @p_PARENT_NAME = {1}", parentid, parentname).ToArrayAsync();
+            var result = await  _context.UserIdentityObject.FromSql("dbo.Users_ByParentA @p_PARENT_ID = {0}, @p_PARENT_NAME = {1}, @p_RECORD_STATUS = '1'", parentid, parentname).ToArrayAsync();
+            //result = result.Where(usr => usr.)
            // int a = 5;
             //int currentPage = _page;
             //int currentPageSize = _pageSize;

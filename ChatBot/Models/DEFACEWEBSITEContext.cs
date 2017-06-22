@@ -30,6 +30,9 @@ namespace ChatBot.Models
         public virtual DbSet<OptionSearchObject> OptionSearchObject { get; set; }
         public virtual DbSet<UserDomainSearchObject> UserDomainSearchObject { get; set; }
         public virtual DbSet<UserIdentityObject> UserIdentityObject { get; set; }
+        public virtual DbSet<UserDomainNotify> UserDomainNotify { get; set; }
+        // public virtual DbSet<UserDomainUpdateObject> UserDomainUpdateObject { get; set; }
+
         public DEFACEWEBSITEContext(DbContextOptions<DEFACEWEBSITEContext> options) : base(options)
         {
         }

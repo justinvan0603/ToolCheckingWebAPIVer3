@@ -36,7 +36,7 @@ namespace ChatBot.Controllers
                 feature.RecordStatus = "1";
                 feature.AuthStatus = "U";
 
-                var command = $"dbo.Features_Ins @p_FEA_TYPE = '{feature.FeaType}' ,@p_CONTENTS = '{feature.Contents}',  @p_LEVEL ={feature.Level}, @p_RESOURCE = '{feature.Resource}', @p_RECORD_STATUS='{feature.RecordStatus}', @p_AUTH_STATUS = '{feature.AuthStatus}', @p_APPROVE_DT = '{feature.ApproveDt.Value.Date}', @p_EDIT_DT = '{feature.EditDt.Value.Date}', @p_CHECKER_ID = '{feature.CheckerId}', @p_EDITOR_ID = '{feature.EditorId}', @p_CREATE_DT='{feature.CreateDt.Value.Date}', @p_MAKER_ID = '{feature.MakerId}'";
+                var command = $"dbo.Features_Ins @p_FEA_TYPE = '{feature.FeaType}' ,@p_CONTENTS = N'{feature.Contents}',  @p_LEVEL ={feature.Level}, @p_RESOURCE = '{feature.Resource}', @p_RECORD_STATUS='{feature.RecordStatus}', @p_AUTH_STATUS = '{feature.AuthStatus}', @p_APPROVE_DT = '{feature.ApproveDt.Value.Date}', @p_EDIT_DT = '{feature.EditDt.Value.Date}', @p_CHECKER_ID = '{feature.CheckerId}', @p_EDITOR_ID = '{feature.EditorId}', @p_CREATE_DT='{feature.CreateDt.Value.Date}', @p_MAKER_ID = '{feature.MakerId}'";
                 var result = await _context.Database.ExecuteSqlCommandAsync(command);
                 rs.Message = "Thêm feedback thành công";
                 rs.Succeeded = true;

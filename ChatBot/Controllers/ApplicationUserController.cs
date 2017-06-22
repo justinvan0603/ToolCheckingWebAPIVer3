@@ -68,15 +68,15 @@ namespace ChatBot.Controllers
             _logger = loggerFactory.CreateLogger<AccountController>();
             _jwtOptions = jwtOptions.Value;
         }
-        //private int _page = 1;
-        //private int _pageSize = 10;
+        private int _page = 1;
+        private int _pageSize = 10;
 
 
         [HttpGet]
         [Authorize(Roles = "ViewUser")]
         public IEnumerable<ApplicationUserViewModel> Get()
         {
-            
+
             //var pagination = Request.Headers["Pagination"];
 
             //if (!string.IsNullOrEmpty(pagination))
@@ -85,10 +85,17 @@ namespace ChatBot.Controllers
             //    int.TryParse(vals[0], out _page);
             //    int.TryParse(vals[1], out _pageSize);
             //}
+            
             var userRoot = _userManager.GetUserId(User);
             var result = _userManager.Users.ToList().FindAll(x => x.LockoutEnabled &&x.PARENT_ID==userRoot);
-        //    var s = result.FindAll(x => x.LockoutEnabled);
-
+            //    var s = result.FindAll(x => x.LockoutEnabled);
+            //if (!String.IsNullOrEmpty(searchString))
+            //{
+            //    result = result.Where(user => user.Email.Contains(searchString.ToLower()) ||
+            //                                    user.FULLNAME.ToLower().Contains(searchString.ToLower())||
+            //                                    user.PHONE.ToString().Contains(searchString)||
+            //                                    user.UserName.ToLower().Contains(searchString.ToLower())).ToList();
+            //}
 
             //int currentPage = _page;
             //int currentPageSize = _pageSize;
@@ -96,7 +103,7 @@ namespace ChatBot.Controllers
             //var totalRecord = result.Count();
             //var totalPages = (int)Math.Ceiling((double)totalRecord / _pageSize);
 
-            //var domains = result.Skip((currentPage - 1) * currentPageSize).Take(currentPageSize);
+            //var users = result.Skip((currentPage - 1) * currentPageSize).Take(currentPageSize);
             //Response.AddPagination(_page, _pageSize, totalRecord, totalPages);
             var model = ViewModelMapper<ApplicationUserViewModel, ApplicationUser>.MapObjects(result.ToList(), null);
            
@@ -107,7 +114,7 @@ namespace ChatBot.Controllers
         [HttpGet("{searchstring=}")]
         public IEnumerable<ApplicationUserViewModel> Get(string searchstring = null)
         {
-            var result = _userManager.Users; ;
+            var result = _userManager.Users;
             if (!String.IsNullOrEmpty(searchstring))
             {
                 result = result.Where(user => user.FULLNAME.ToLower().Contains(searchstring.ToLower()) ||

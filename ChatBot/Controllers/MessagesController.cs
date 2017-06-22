@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -65,7 +65,7 @@ namespace ChatBot.Controllers
             this._context = context;
         }
         [HttpGet("{page:int=0}/{pageSize=12}/{username}/{searchstring=}")]
-        //[Authorize(Roles = "ViewMessage")]
+        [Authorize(Roles = "ViewMessage")]
         public async Task<IActionResult> Get(int? page, int? pageSize,string username, string searchstring = null)
         {
 
@@ -133,10 +133,40 @@ namespace ChatBot.Controllers
                 //context.Dispose();
                 return new ObjectResult(pagedSet);
             }
-            //   }
-            //CodeResultStatus _codeResult = new CodeResultStatus(401);
-            //return new ObjectResult(_codeResult);
-       // }
+        [HttpPut("MessageRead")]
+        //[Authorize(Roles = "ViewMessage")]
+        public async Task<ObjectResult> Put(int messageid)
+        {
+            GenericResult rs = new GenericResult();
+            try
+            {
+                string command = $"dbo.Messages_Read @MessageId = {messageid}";
+                var result = await _context.Database.ExecuteSqlCommandAsync(command);
+                if (result > 0)
+                {
+                    rs.Message = "Cập nhật trạng thái đã độc thành công";
+                    rs.Succeeded = true;
+                }
+                else
+                {
+                    rs.Message = "Đã có lỗi xảy ra";
+                    rs.Succeeded = false;
+                }
+                ObjectResult objRes = new ObjectResult(rs);
+                return objRes;
+            }
+            catch (Exception ex)
+            {
+                rs.Message = "Lỗi - " + ex.Message;
+                rs.Succeeded = false;
+                ObjectResult objRes = new ObjectResult(rs);
+                return objRes;
+            }
+        }
+        //   }
+        //CodeResultStatus _codeResult = new CodeResultStatus(401);
+        //return new ObjectResult(_codeResult);
+        // }
 
     }
 }

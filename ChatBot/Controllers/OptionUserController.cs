@@ -25,32 +25,32 @@ namespace ChatBot.Controllers
         }
         [HttpGet]
         [Authorize(Roles = "ViewOptionUser")]
-        public  IEnumerable<UserDomainSearchObject> Get(string domain)
+        public async Task<IEnumerable<UserDomainSearchObject>> Get(string domain)
         {
-            var pagination = Request.Headers["Pagination"];
+            //var pagination = Request.Headers["Pagination"];
 
-            if (!string.IsNullOrEmpty(pagination))
-            {
-                string[] vals = pagination.ToString().Split(',');
-                int.TryParse(vals[0], out _page);
-                int.TryParse(vals[1], out _pageSize);
-            }
+            //if (!string.IsNullOrEmpty(pagination))
+            //{
+            //    string[] vals = pagination.ToString().Split(',');
+            //    int.TryParse(vals[0], out _page);
+            //    int.TryParse(vals[1], out _pageSize);
+            //}
 
             //DEFACEWEBSITEContext context = new DEFACEWEBSITEContext();
             string command = $"dbo.Optionsuser_Search @USER = '', @DOMAIN = '{domain}'";
-            var result =  _context.UserDomainSearchObject.FromSql(command).ToArray();
-            int currentPage = _page;
-            int currentPageSize = _pageSize;
+            var result =  await _context.UserDomainSearchObject.FromSql(command).ToListAsync();
+            //int currentPage = _page;
+            //int currentPageSize = _pageSize;
 
-            var totalRecord = result.Count();
-            var totalPages = (int)Math.Ceiling((double)totalRecord / _pageSize);
+            //var totalRecord = result.Count();
+            //var totalPages = (int)Math.Ceiling((double)totalRecord / _pageSize);
 
-            var optionlinks = result.Skip((currentPage - 1) * currentPageSize).Take(currentPageSize);
-            Response.AddPagination(_page, _pageSize, totalRecord, totalPages);
-            IEnumerable<UserDomainSearchObject> listPagedOptionLink = Mapper.Map<IEnumerable<UserDomainSearchObject>, IEnumerable<UserDomainSearchObject>>(optionlinks);
+            //var optionlinks = result.Skip((currentPage - 1) * currentPageSize).Take(currentPageSize);
+            //Response.AddPagination(_page, _pageSize, totalRecord, totalPages);
+            //IEnumerable<UserDomainSearchObject> listPagedOptionLink = Mapper.Map<IEnumerable<UserDomainSearchObject>, IEnumerable<UserDomainSearchObject>>(optionlinks);
 
             //context.Dispose();
-            return listPagedOptionLink;
+            return result;
 
 
         }

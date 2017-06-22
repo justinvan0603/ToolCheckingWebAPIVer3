@@ -93,8 +93,16 @@ namespace ChatBot.Controllers
                 
                 string command = $"dbo.Listdomain_Del @ID={id}";
                 var result = await _context.Database.ExecuteSqlCommandAsync(command, cancellationToken: CancellationToken.None);
-                rs.Succeeded = true;
-                rs.Message = "Xóa domain thành công!";
+                if (result > 0)
+                {
+                    rs.Succeeded = true;
+                    rs.Message = "Xóa domain thành công!";
+                }
+                else
+                {
+                    rs.Succeeded = false;
+                    rs.Message = "Đã có lỗi xảy ra!";
+                }
                 //return result;
                 ObjectResult objRes = new ObjectResult(rs);
                 //context.Dispose();
@@ -190,8 +198,16 @@ namespace ChatBot.Controllers
                 
                 string command = $"dbo.Listdomain_Upd @p_ID= {domain.ID},@p_DOMAIN = '{domain.DOMAIN}',@p_USER_ID='{domain.USER_ID}',@p_USERNAME='{domain.USERNAME}',@p_DESCRIPTION = N'{domain.DESCRIPTION}',@p_RECORD_STATUS = '{domain.RECORD_STATUS}',@p_AUTH_STATUS = '{domain.AUTH_STATUS}',@p_CREATE_DT = '{domain.CREATE_DT}',@p_APPROVE_DT = '{domain.APPROVE_DT}',@p_EDIT_DT = '{DateTime.Now.Date}',@p_MAKER_ID = '{domain.MAKER_ID}',@p_CHECKER_ID = '{domain.CHECKER_ID}',@p_EDITOR_ID = '{domain.EDITOR_ID}'";
                 var result = await _context.Database.ExecuteSqlCommandAsync(command, cancellationToken: CancellationToken.None);
-                rs.Succeeded = true;
-                rs.Message = "Cập nhật Domain thành công";
+                if (result > 0)
+                {
+                    rs.Succeeded = true;
+                    rs.Message = "Cập nhật Domain thành công";
+                }
+                else
+                {
+                    rs.Succeeded = false;
+                    rs.Message = "Đã có lỗi xảy ra";
+                }
                 ObjectResult objRes = new ObjectResult(rs);
                 //context.Dispose();
                 return objRes;

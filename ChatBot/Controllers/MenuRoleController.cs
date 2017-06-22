@@ -43,6 +43,7 @@ namespace ChatBot.Controllers
         //[HttpGet]
         //[Route("/getMenuJson")]
         [HttpGet("getMenuJson")]
+        [Authorize(Roles = "ViewMenuRole")]
         public async Task<List<MenuRoleJson.Rootobject>> GetMenuJson()
         {
            // var resual = "  [{\r\n      \"path\": \"pages222\",\r\n      \"children\": [\r\n        {\r\n          \"path\": \"messages\",\r\n          \"data\": {\r\n            \"menu\": {\r\n              \"title\": \"Thông báo\",\r\n              \"icon\": \"ion-android-notifications-none\",\r\n              \"selected\": false,\r\n              \"expanded\": false,\r\n              \"order\": 500\r\n            }\r\n          },\r\n          \"children\": [\r\n            {\r\n              \"path\": \"messagelist\",\r\n              \"data\": {\r\n                \"menu\": {\r\n                  \"title\": \"Danh sách thô\"\r\n                }\r\n              }\r\n            }\r\n          ]\r\n        }\r\n        ]\r\n  },\r\n  {\r\n      \"path\": \"pages\",\r\n      \"children\": [\r\n        {\r\n          \"path\": \"messages\",\r\n          \"data\": {\r\n            \"menu\": {\r\n              \"title\": \"Thông báo\",\r\n              \"icon\": \"ion-android-notifications-none\",\r\n              \"selected\": false,\r\n              \"expanded\": false,\r\n              \"order\": 500\r\n            }\r\n          },\r\n          \"children\": [\r\n            {\r\n              \"path\": \"messagelist\",\r\n              \"data\": {\r\n                \"menu\": {\r\n                  \"title\": \"Danh sách thông báo\"\r\n                }\r\n              }\r\n            }\r\n          ]\r\n        }\r\n        ]\r\n  }\r\n]\r\n\r\n    \r\n";
@@ -177,6 +178,7 @@ namespace ChatBot.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "AddMenuRole")]
         public IActionResult Create([FromBody]MenuRoleViewModel menuRoleViewModel)
         {
             if (!ModelState.IsValid)
@@ -238,6 +240,7 @@ namespace ChatBot.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "EditMenuRole")]
         public IActionResult Put([FromBody]MenuRoleViewModel menuRoleViewModel)
         {
             if (!ModelState.IsValid)
@@ -281,6 +284,7 @@ namespace ChatBot.Controllers
 
 
         [HttpDelete("{id:int}")]
+        [Authorize(Roles = "DeleteMenuRole")]
         public IActionResult Delete(int id)
         {
             IActionResult _result = new ObjectResult(false);

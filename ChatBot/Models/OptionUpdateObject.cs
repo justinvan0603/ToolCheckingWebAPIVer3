@@ -21,7 +21,7 @@ namespace ChatBot.Models
         //string CHECKER_ID { get; set; }
         //string EDITOR_ID { get; set; }
         public OptionSearchObject OPTION { get; set; }
-        public List<Optionlinks> DOMAINLINK { get; set; }
+        public List<OptionLinksNotify> DOMAINLINK { get; set; }
         public List<UserDomainSearchObject> DOMAINUSER { get; set; }
         public string IsEditUser { get; set; }
         public string IsEditLink { get; set; }
